@@ -51,10 +51,17 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
       if (!res.ok) {
         const err = await res.json().catch(() => ({}))
-        throw new Error(err.error || "รหัสผ่านไม่ถูกต้อง")
+        throw new Error(err.data?.message || err.message || "รหัสผ่านไม่ถูกต้อง")
       }
 
-      const { customToken } = await res.json()
+      const json = await res.json()
+
+      // CF returns { status: "success", data: { valid, customToken, ... } }
+      if (json.status !== "success" || !json.data?.valid) {
+        throw new Error(json.data?.message || "รหัสผ่านไม่ถูกต้อง")
+      }
+
+      const { customToken } = json.data
 
       if (!customToken) {
         throw new Error("ไม่สามารถสร้าง token ได้")

@@ -4,14 +4,14 @@ import { getFirestore, connectFirestoreEmulator } from "firebase/firestore"
 import { getFunctions, connectFunctionsEmulator } from "firebase/functions"
 import { getStorage, connectStorageEmulator } from "firebase/storage"
 
-// Firebase config — loaded from Cloud Functions in production
+// Firebase config — for project srikanett-order
 const firebaseConfig = {
   apiKey: "AIzaSyCqG-eo_OyIgWCq00VcbA51ce61WB2np-o",
   authDomain: "srikanett-order.firebaseapp.com",
   projectId: "srikanett-order",
-  storageBucket: "srikanett-order.appspot.com",
-  messagingSenderId: "1092714184049",
-  appId: "1:1092714184049:web:9a1076f0ea1c30e8e3aed0",
+  storageBucket: "srikanett-order.firebasestorage.app",
+  messagingSenderId: "375735561853",
+  appId: "1:375735561853:web:65ca73251feb9757ac4b14",
 }
 
 // Initialize Firebase
