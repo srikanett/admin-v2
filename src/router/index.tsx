@@ -9,34 +9,48 @@ const Loader = () => (
   </div>
 )
 
-const Lazy = (path: string, name: string) =>
-  lazy(() => import(`@/views/${path}`).then((m) => ({ default: m[name] })))
+// Use import.meta.glob for lazy loading — Vite resolves these at build time
+const viewModules = import.meta.glob("../views/*.tsx") as Record<string, () => Promise<Record<string, React.ComponentType>>>
 
-const CreateOrderView = Lazy("create-order", "createOrderView")
-const ManageOrderView = Lazy("manage-orders", "manageOrderView")
-const QuickAddOrderView = Lazy("quick-order", "quickAddOrderView")
-const ScannerView = Lazy("scanner", "scannerView")
-const SearchPageView = Lazy("search", "searchView")
-const PrintReceiptView = Lazy("print-receipt", "printReceiptView")
-const ManageQuickOrderView = Lazy("print-quick-order", "printQuickOrderView")
-const ManageCustomerAddressView = Lazy("customers", "manageCustomerAddressView")
-const ManageParticipantBirthdayView = Lazy("participants", "manageParticipantBirthdayView")
-const ManageSheetView = Lazy("sheets", "sheetsView")
-const InventoryDashboardView = Lazy("inventory", "inventoryView")
-const ManageProductView = Lazy("products", "manageProductView")
-const ManageCeremonyView = Lazy("ceremonies", "manageCeremonyView")
-const ManageShippingRatesView = Lazy("shipping", "shippingView")
-const ReportsView = Lazy("reports", "reportsView")
-const ManageBillView = Lazy("bills", "billsView")
-const BeamPaymentsView = Lazy("payments", "paymentsView")
-const ImageGalleryView = Lazy("gallery", "galleryView")
-const CeremonyCardView = Lazy("ceremony-cards", "ceremonyCardsView")
-const SlipGalleryView = Lazy("slips", "slipsView")
-const ManageLineBotView = Lazy("line-bot", "lineBotView")
-const SystemToolsView = Lazy("system-tools", "systemToolsView")
-const ReplyRulesView = Lazy("reply-rules", "replyRulesView")
-const LineCustomersView = Lazy("line-customers", "lineCustomersView")
-const BroadcastView = Lazy("broadcast", "broadcastView")
+function LazyView(path: string, exportName: string) {
+  const key = `../views/${path}.tsx`
+  const loader = viewModules[key]
+  if (!loader) {
+    // Return a fallback component if module not found
+    return () => (
+      <div className="flex flex-col items-center justify-center py-20 text-gold-100/30">
+        <p className="font-heading">ไม่พบหน้า: {path}</p>
+      </div>
+    )
+  }
+  return lazy(() => loader().then((m) => ({ default: m[exportName] || (() => <div>Export {exportName} not found</div>) })))
+}
+
+const CreateOrderView = LazyView("create-order", "createOrderView")
+const ManageOrderView = LazyView("manage-orders", "manageOrderView")
+const QuickAddOrderView = LazyView("quick-order", "quickAddOrderView")
+const ScannerView = LazyView("scanner", "scannerView")
+const SearchPageView = LazyView("search", "searchView")
+const PrintReceiptView = LazyView("print-receipt", "printReceiptView")
+const ManageQuickOrderView = LazyView("print-quick-order", "printQuickOrderView")
+const ManageCustomerAddressView = LazyView("customers", "manageCustomerAddressView")
+const ManageParticipantBirthdayView = LazyView("participants", "manageParticipantBirthdayView")
+const ManageSheetView = LazyView("sheets", "sheetsView")
+const InventoryDashboardView = LazyView("inventory", "inventoryView")
+const ManageProductView = LazyView("products", "manageProductView")
+const ManageCeremonyView = LazyView("ceremonies", "manageCeremonyView")
+const ManageShippingRatesView = LazyView("shipping", "shippingView")
+const ReportsView = LazyView("reports", "reportsView")
+const ManageBillView = LazyView("bills", "billsView")
+const BeamPaymentsView = LazyView("payments", "paymentsView")
+const ImageGalleryView = LazyView("gallery", "galleryView")
+const CeremonyCardView = LazyView("ceremony-cards", "ceremonyCardsView")
+const SlipGalleryView = LazyView("slips", "slipsView")
+const ManageLineBotView = LazyView("line-bot", "lineBotView")
+const SystemToolsView = LazyView("system-tools", "systemToolsView")
+const ReplyRulesView = LazyView("reply-rules", "replyRulesView")
+const LineCustomersView = LazyView("line-customers", "lineCustomersView")
+const BroadcastView = LazyView("broadcast", "broadcastView")
 
 const Route = ({ C }: { C: React.ComponentType }) => (
   <Suspense fallback={<Loader />}><C /></Suspense>
