@@ -7,20 +7,17 @@
 @import "@fontsource/sarabun/700.css";
 
 /* ═══════════════════════════════════════════════
-   SRIKANETT DHEVALAI — Design Tokens
-   Theme: Sacred Luxury — Gold + Purple + Glassmorphism
+   SRIKANETT DHEVALAI — Design System
+   Sacred Luxury — Gold + Purple + Glassmorphism
    ═══════════════════════════════════════════════ */
 
 @theme {
-  /* ── Primary: Luxury Sacred Gold Collection (70%) ── */
   --color-gold-900: #3B2506;
   --color-gold-800: #6B4410;
   --color-gold-600: #A06A1B;
   --color-gold-500: #D4952A;
   --color-gold-300: #E8BF6A;
   --color-gold-100: #F5E6C8;
-
-  /* ── Secondary: Sacred Purple & Rose (25%) ── */
   --color-purple-900: #1D1A39;
   --color-purple-800: #451952;
   --color-purple-700: #662549;
@@ -33,103 +30,158 @@
   --color-rose-200: #EFB5D7;
   --color-rose-100: #E8BCB9;
   --color-peach-500: #F39F5A;
-
-  /* ── Accent (5%) ── */
   --color-success: #22B573;
   --color-danger: #C62828;
   --color-info: #335DFF;
-
-  /* ── Neutral ── */
   --color-ivory: #F5E6C8;
   --color-charcoal: #232323;
   --color-black: #0F0F0F;
-
-  /* ── Typography ── */
   --font-heading: 'Kanit', sans-serif;
   --font-body: 'Sarabun', sans-serif;
-
-  /* ── Glassmorphism ── */
-  --glass-bg: rgba(69, 25, 82, 0.15);
-  --glass-border: rgba(212, 149, 42, 0.10);
-  --glass-blur: 24px;
-  --glass-blur-lg: 32px;
-  --glass-radius: 1rem;
-
-  /* ── Shadows ── */
-  --shadow-glass: 0 8px 32px rgba(29, 26, 57, 0.4);
-  --shadow-gold: 0 4px 20px rgba(212, 149, 42, 0.3);
-  --shadow-gold-strong: 0 4px 30px rgba(212, 149, 42, 0.5);
-  --shadow-purple: 0 4px 20px rgba(69, 25, 82, 0.4);
-  --shadow-rose: 0 4px 20px rgba(199, 40, 149, 0.3);
-  --shadow-warm: 0 4px 20px rgba(59, 37, 6, 0.3);
-
-  /* ── Border Radius ── */
-  --radius-glass: 1rem;
-  --radius-card: 1.25rem;
-  --radius-modal: 1.75rem;
-  --radius-button: 9999px;
-  --radius-input: 0.75rem;
-
-  /* ── Transitions ── */
   --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ═══════════════════════════════════════════════
-   BASE STYLES
+   BASE
    ═══════════════════════════════════════════════ */
 
 @layer base {
   * {
     scrollbar-width: thin;
     scrollbar-color: rgba(212, 149, 42, 0.3) transparent;
+    -webkit-tap-highlight-color: transparent;
   }
+
+  html { height: 100%; }
 
   body {
     font-family: var(--font-body);
     color: #ffffff;
-    background: radial-gradient(
-      ellipse at 50% 0%,
-      #1D1A39 0%,
-      #15081E 40%,
-      #0A0005 100%
-    );
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(107, 27, 154, 0.4), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(199, 40, 149, 0.15), transparent),
+      linear-gradient(180deg, #0A0005 0%, #1D1A39 50%, #0F0F0F 100%);
     background-attachment: fixed;
     min-height: 100dvh;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    color: #D4952A;
     font-weight: 700;
+    letter-spacing: 0.02em;
   }
 
-  ::selection {
-    background: rgba(212, 149, 42, 0.3);
-    color: #F5E6C8;
+  h1, h2 { color: #D4952A; }
+  h3 { color: #E8BF6A; }
+
+  ::selection { background: rgba(212, 149, 42, 0.35); color: #0F0F0F; }
+}
+
+/* ═══════════════════════════════════════════════
+   SHADCN/UI OVERRIDES — force brand colors
+   ═══════════════════════════════════════════════ */
+
+@layer base {
+  /* Buttons */
+  [data-slot="button"] {
+    font-family: var(--font-heading) !important;
+    font-weight: 600 !important;
+    transition: all 400ms var(--ease-luxury) !important;
+  }
+
+  /* Cards */
+  [data-slot="card"] {
+    background: rgba(69, 25, 82, 0.12) !important;
+    border: 1.5px solid rgba(212, 149, 42, 0.12) !important;
+    backdrop-filter: blur(28px) !important;
+    -webkit-backdrop-filter: blur(28px) !important;
+    box-shadow: 0 8px 32px rgba(29, 26, 57, 0.5), inset 0 1px 0 rgba(212, 149, 42, 0.1) !important;
+    border-radius: 1.25rem !important;
+  }
+
+  /* Inputs */
+  [data-slot="input"] {
+    background: rgba(0, 0, 0, 0.35) !important;
+    border: 1.5px solid rgba(212, 149, 42, 0.2) !important;
+    border-radius: 0.75rem !important;
+    color: #ffffff !important;
+    font-family: var(--font-body) !important;
+    padding: 0.625rem 0.875rem !important;
+  }
+  [data-slot="input"]:focus {
+    border-color: rgba(212, 149, 42, 0.6) !important;
+    box-shadow: 0 0 25px rgba(212, 149, 42, 0.25), 0 0 8px rgba(199, 40, 149, 0.15) !important;
+    outline: none !important;
+  }
+  [data-slot="input"]::placeholder { color: rgba(245, 230, 200, 0.35) !important; }
+
+  /* Select */
+  [data-slot="select-trigger"] {
+    background: rgba(0, 0, 0, 0.35) !important;
+    border: 1.5px solid rgba(212, 149, 42, 0.2) !important;
+    color: #ffffff !important;
+    border-radius: 0.75rem !important;
+  }
+
+  /* Dialog */
+  [data-slot="dialog-content"] {
+    background: rgba(29, 26, 57, 0.95) !important;
+    border: 1.5px solid rgba(212, 149, 42, 0.2) !important;
+    backdrop-filter: blur(32px) !important;
+    -webkit-backdrop-filter: blur(32px) !important;
+    border-radius: 1.75rem !important;
+    box-shadow: 0 0 50px rgba(212, 149, 42, 0.2), 0 0 100px rgba(29, 26, 57, 0.5) !important;
+  }
+
+  /* Badge */
+  [data-slot="badge"] {
+    font-family: var(--font-heading) !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  /* Table */
+  [data-slot="table"] {
+    background: rgba(69, 25, 82, 0.08) !important;
+    border-radius: 1rem !important;
+    overflow: hidden !important;
+  }
+  [data-slot="table"] th {
+    color: #D4952A !important;
+    font-family: var(--font-heading) !important;
+    font-weight: 600 !important;
+    background: rgba(69, 25, 82, 0.2) !important;
+  }
+  [data-slot="table"] td {
+    color: rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(212, 149, 42, 0.08) !important;
+  }
+  [data-slot="table"] tr:hover td {
+    background: rgba(212, 149, 42, 0.05) !important;
   }
 }
 
 /* ═══════════════════════════════════════════════
-   UTILITIES
+   UTILITY CLASSES — Custom
    ═══════════════════════════════════════════════ */
 
 @utility glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1.5px solid var(--glass-border);
-  border-radius: var(--radius-glass);
-  box-shadow: var(--shadow-glass), inset 0 1px 0 rgba(212, 149, 42, 0.15);
-  transition: all 400ms var(--ease-luxury);
+  background: rgba(69, 25, 82, 0.12);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1.5px solid rgba(212, 149, 42, 0.12);
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 32px rgba(29, 26, 57, 0.5), inset 0 1px 0 rgba(212, 149, 42, 0.1);
 }
 
-@utility glass-panel-hover {
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 70px rgba(212, 149, 42, 0.25), var(--shadow-glass);
-  }
+@utility glass-panel-strong {
+  background: rgba(69, 25, 82, 0.2);
+  backdrop-filter: blur(36px);
+  -webkit-backdrop-filter: blur(36px);
+  border: 1.5px solid rgba(212, 149, 42, 0.2);
+  border-radius: 1.5rem;
+  box-shadow: 0 12px 48px rgba(29, 26, 57, 0.6), inset 0 1px 0 rgba(212, 149, 42, 0.15);
 }
 
 @utility btn-gold {
@@ -137,33 +189,26 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-button);
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 0.9375rem;
   color: #0F0F0F;
-  background: linear-gradient(135deg, #F5E6C8, #E8BF6A, #D4952A, #A06A1B);
-  box-shadow: var(--shadow-gold);
-  border: none;
+  background: linear-gradient(135deg, #F5E6C8 0%, #E8BF6A 25%, #D4952A 50%, #A06A1B 100%);
+  box-shadow: 0 4px 24px rgba(212, 149, 42, 0.4), 0 0 60px rgba(212, 149, 42, 0.15);
+  border: 1px solid rgba(245, 230, 200, 0.3);
   cursor: pointer;
   transition: all 400ms var(--ease-luxury);
   touch-action: manipulation;
+  letter-spacing: 0.02em;
 
   &:hover {
-    transform: scale(1.02);
-    box-shadow: var(--shadow-gold-strong);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 8px 32px rgba(212, 149, 42, 0.55), 0 0 80px rgba(212, 149, 42, 0.2);
   }
-
-  &:active {
-    transform: scale(0.97);
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
+  &:active { transform: scale(0.97); }
+  &:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 }
 
 @utility btn-purple {
@@ -171,100 +216,60 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-button);
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 0.9375rem;
-  color: #ffffff;
-  background: linear-gradient(135deg, #451952, #662549, #AE445A);
-  box-shadow: var(--shadow-purple);
-  border: 1px solid rgba(212, 149, 42, 0.3);
-  cursor: pointer;
-  transition: all 400ms var(--ease-luxury);
-  touch-action: manipulation;
-
-  &:hover {
-    transform: scale(1.02);
-    background: linear-gradient(135deg, #662549, #AE445A, #C72895);
-  }
-
-  &:active {
-    transform: scale(0.97);
-  }
-}
-
-@utility btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-button);
-  font-family: var(--font-heading);
   font-size: 0.875rem;
-  color: #D4952A;
-  background: rgba(212, 149, 42, 0.1);
+  color: #ffffff;
+  background: linear-gradient(135deg, #451952 0%, #662549 50%, #AE445A 100%);
+  box-shadow: 0 4px 20px rgba(69, 25, 82, 0.5);
   border: 1px solid rgba(212, 149, 42, 0.2);
   cursor: pointer;
   transition: all 400ms var(--ease-luxury);
-  touch-action: manipulation;
 
-  &:hover {
-    background: rgba(212, 149, 42, 0.2);
-    border-color: rgba(212, 149, 42, 0.4);
-  }
+  &:hover { box-shadow: 0 8px 30px rgba(69, 25, 82, 0.6); }
+  &:active { transform: scale(0.97); }
 }
 
 @utility themed-input {
   width: 100%;
-  padding: 0.5rem 0.875rem;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1.5px solid rgba(212, 149, 42, 0.3);
-  border-radius: var(--radius-input);
+  padding: 0.625rem 1rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1.5px solid rgba(212, 149, 42, 0.2);
+  border-radius: 0.75rem;
   color: #ffffff;
   font-family: var(--font-body);
   font-size: 0.9375rem;
   transition: all 300ms var(--ease-luxury);
   outline: none;
 
-  &::placeholder {
-    color: rgba(245, 230, 200, 0.4);
-  }
-
+  &::placeholder { color: rgba(245, 230, 200, 0.35); }
   &:focus {
-    border-color: #D4952A;
-    box-shadow: 0 0 30px rgba(212, 149, 42, 0.3),
-                0 0 10px rgba(199, 40, 149, 0.15);
+    border-color: rgba(212, 149, 42, 0.6);
+    box-shadow: 0 0 25px rgba(212, 149, 42, 0.25), 0 0 8px rgba(199, 40, 149, 0.15);
   }
 }
 
-@utility aurora-heading {
+@utility status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.75rem;
+  border-radius: 9999px;
   font-family: var(--font-heading);
-  color: #D4952A;
-  font-weight: 700;
-}
-
-@utility aurora-heading-rose {
-  font-family: var(--font-heading);
-  color: #C72895;
-  font-weight: 700;
-}
-
-@utility aurora-heading-purple {
-  font-family: var(--font-heading);
-  color: #AE445A;
-  font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE / MOBILE-FIRST OVERRIDES
+   MOBILE OVERRIDES
    ═══════════════════════════════════════════════ */
 
-@media (max-width: 768px) {
-  .glass-panel {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+@media (max-width: 767px) {
+  .glass-panel, .glass-panel-strong, [data-slot="card"], [data-slot="dialog-content"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 }
 
