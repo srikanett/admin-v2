@@ -1,0 +1,276 @@
+@import "tailwindcss";
+@import "@fontsource/kanit/400.css";
+@import "@fontsource/kanit/500.css";
+@import "@fontsource/kanit/700.css";
+@import "@fontsource/sarabun/400.css";
+@import "@fontsource/sarabun/500.css";
+@import "@fontsource/sarabun/700.css";
+
+/* ═══════════════════════════════════════════════
+   SRIKANETT DHEVALAI — Design Tokens
+   Theme: Sacred Luxury — Gold + Purple + Glassmorphism
+   ═══════════════════════════════════════════════ */
+
+@theme {
+  /* ── Primary: Luxury Sacred Gold Collection (70%) ── */
+  --color-gold-900: #3B2506;
+  --color-gold-800: #6B4410;
+  --color-gold-600: #A06A1B;
+  --color-gold-500: #D4952A;
+  --color-gold-300: #E8BF6A;
+  --color-gold-100: #F5E6C8;
+
+  /* ── Secondary: Sacred Purple & Rose (25%) ── */
+  --color-purple-900: #1D1A39;
+  --color-purple-800: #451952;
+  --color-purple-700: #662549;
+  --color-purple-deep: #3A0353;
+  --color-purple-500: #804A8A;
+  --color-rose-700: #55183F;
+  --color-rose-600: #AE445A;
+  --color-rose-500: #C72895;
+  --color-rose-400: #DD6FB4;
+  --color-rose-200: #EFB5D7;
+  --color-rose-100: #E8BCB9;
+  --color-peach-500: #F39F5A;
+
+  /* ── Accent (5%) ── */
+  --color-success: #22B573;
+  --color-danger: #C62828;
+  --color-info: #335DFF;
+
+  /* ── Neutral ── */
+  --color-ivory: #F5E6C8;
+  --color-charcoal: #232323;
+  --color-black: #0F0F0F;
+
+  /* ── Typography ── */
+  --font-heading: 'Kanit', sans-serif;
+  --font-body: 'Sarabun', sans-serif;
+
+  /* ── Glassmorphism ── */
+  --glass-bg: rgba(69, 25, 82, 0.15);
+  --glass-border: rgba(212, 149, 42, 0.10);
+  --glass-blur: 24px;
+  --glass-blur-lg: 32px;
+  --glass-radius: 1rem;
+
+  /* ── Shadows ── */
+  --shadow-glass: 0 8px 32px rgba(29, 26, 57, 0.4);
+  --shadow-gold: 0 4px 20px rgba(212, 149, 42, 0.3);
+  --shadow-gold-strong: 0 4px 30px rgba(212, 149, 42, 0.5);
+  --shadow-purple: 0 4px 20px rgba(69, 25, 82, 0.4);
+  --shadow-rose: 0 4px 20px rgba(199, 40, 149, 0.3);
+  --shadow-warm: 0 4px 20px rgba(59, 37, 6, 0.3);
+
+  /* ── Border Radius ── */
+  --radius-glass: 1rem;
+  --radius-card: 1.25rem;
+  --radius-modal: 1.75rem;
+  --radius-button: 9999px;
+  --radius-input: 0.75rem;
+
+  /* ── Transitions ── */
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ═══════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════ */
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212, 149, 42, 0.3) transparent;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: #ffffff;
+    background: radial-gradient(
+      ellipse at 50% 0%,
+      #1D1A39 0%,
+      #15081E 40%,
+      #0A0005 100%
+    );
+    background-attachment: fixed;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: #D4952A;
+    font-weight: 700;
+  }
+
+  ::selection {
+    background: rgba(212, 149, 42, 0.3);
+    color: #F5E6C8;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════════ */
+
+@utility glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1.5px solid var(--glass-border);
+  border-radius: var(--radius-glass);
+  box-shadow: var(--shadow-glass), inset 0 1px 0 rgba(212, 149, 42, 0.15);
+  transition: all 400ms var(--ease-luxury);
+}
+
+@utility glass-panel-hover {
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 70px rgba(212, 149, 42, 0.25), var(--shadow-glass);
+  }
+}
+
+@utility btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-button);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #0F0F0F;
+  background: linear-gradient(135deg, #F5E6C8, #E8BF6A, #D4952A, #A06A1B);
+  box-shadow: var(--shadow-gold);
+  border: none;
+  cursor: pointer;
+  transition: all 400ms var(--ease-luxury);
+  touch-action: manipulation;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-gold-strong);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+@utility btn-purple {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-button);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #451952, #662549, #AE445A);
+  box-shadow: var(--shadow-purple);
+  border: 1px solid rgba(212, 149, 42, 0.3);
+  cursor: pointer;
+  transition: all 400ms var(--ease-luxury);
+  touch-action: manipulation;
+
+  &:hover {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, #662549, #AE445A, #C72895);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+@utility btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-button);
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  color: #D4952A;
+  background: rgba(212, 149, 42, 0.1);
+  border: 1px solid rgba(212, 149, 42, 0.2);
+  cursor: pointer;
+  transition: all 400ms var(--ease-luxury);
+  touch-action: manipulation;
+
+  &:hover {
+    background: rgba(212, 149, 42, 0.2);
+    border-color: rgba(212, 149, 42, 0.4);
+  }
+}
+
+@utility themed-input {
+  width: 100%;
+  padding: 0.5rem 0.875rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1.5px solid rgba(212, 149, 42, 0.3);
+  border-radius: var(--radius-input);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  transition: all 300ms var(--ease-luxury);
+  outline: none;
+
+  &::placeholder {
+    color: rgba(245, 230, 200, 0.4);
+  }
+
+  &:focus {
+    border-color: #D4952A;
+    box-shadow: 0 0 30px rgba(212, 149, 42, 0.3),
+                0 0 10px rgba(199, 40, 149, 0.15);
+  }
+}
+
+@utility aurora-heading {
+  font-family: var(--font-heading);
+  color: #D4952A;
+  font-weight: 700;
+}
+
+@utility aurora-heading-rose {
+  font-family: var(--font-heading);
+  color: #C72895;
+  font-weight: 700;
+}
+
+@utility aurora-heading-purple {
+  font-family: var(--font-heading);
+  color: #AE445A;
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE / MOBILE-FIRST OVERRIDES
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .glass-panel {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
