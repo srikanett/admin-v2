@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { Outlet, useNavigate, useLocation } from "react-router-dom"
 import { AppHeader } from "./app-header"
 import { AppSidebar } from "./app-sidebar"
+import { QuickActionsBar } from "./quick-actions-bar"
 import { useAuthStore } from "@/stores/auth"
 import type { BotId } from "@/types"
 
@@ -10,6 +11,7 @@ export function AppShell() {
   const [selectedBot, setSelectedBot] = useState<BotId>("Bot 1 Sriganett99")
   const { logout, isAuthenticated, isLoading } = useAuthStore()
   const navigate = useNavigate()
+  const location = useLocation()
 
   // Close sidebar on route change (mobile)
   useEffect(() => {
@@ -53,7 +55,8 @@ export function AppShell() {
         />
 
         <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
-          <div className="mx-auto max-w-desktop">
+          <div className="mx-auto max-w-[1366px]">
+            <QuickActionsBar />
             <Outlet />
           </div>
         </main>

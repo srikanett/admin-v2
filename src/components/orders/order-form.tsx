@@ -9,7 +9,10 @@ import {
   formatThaiCurrency,
   normalizePhone,
 } from "@/lib/helpers"
-import { Save } from "lucide-react"
+import { createOrder, type CreateOrderResult } from "@/hooks/use-orders"
+import { Save, CheckCircle2, Copy, ExternalLink, QrCode, Send } from "lucide-react"
+import { BeamQrModal } from "./beam-qr"
+import { ShareModal } from "./share-modal"
 
 export function OrderForm() {
   const { passcode } = useAuthStore()
@@ -42,10 +45,38 @@ export function OrderForm() {
 
   const [isSaving, setIsSaving] = useState(false)
   const [saveError, setSaveError] = useState("")
+  const [saveSuccess, setSaveSuccess] = useState<CreateOrderResult | null>(null)
+  const [showBeamQr, setShowBeamQr] = useState(false)
+  const [showShare, setShowShare] = useState(false)
+
+  /** Reset form to defaults */
+  const resetForm = () => {
+    setCustomerName("")
+    setCustomerPhone("")
+    setCustomerAddress("")
+    setCustomerBirthday("")
+    setNote("")
+    setShippingFee(0)
+    setPaymentMethod("โอน")
+    setSelectedBank(null)
+    setCeremonyEnabled(false)
+    setSelectedCeremony(null)
+    setParticipantName("")
+    setParticipantBirthday("")
+    setParticipantName2("")
+    setParticipantBirthday2("")
+    setParticipantSlots(1)
+    setItems([
+      { id: crypto.randomUUID(), name: "", unitPrice: 0, quantity: 1, discount: 0 },
+    ])
+    setSaveError("")
+    setSaveSuccess(null)
+  }
 
   const handleSave = async (e: FormEvent) => {
     e.preventDefault()
     setSaveError("")
+    setSaveSuccess(null)
 
     if (!customerName.trim()) {
       setSaveError("กรุณากรอกชื่อลูกค้า")
@@ -62,9 +93,42 @@ export function OrderForm() {
 
     setIsSaving(true)
     try {
-      // TODO Phase 2b: Save to Firestore
-      await new Promise((r) => setTimeout(r, 800))
-      alert("บันทึกออร์เดอร์เรียบร้อย ✅\n(Phase 2b — Firestore save coming soon)")
+      const result = await createOrder({
+        type: ceremonyEnabled && selectedCeremony ? "ceremony" : "product",
+        customerName,
+        customerPhone,
+        customerAddress,
+        customerBirthday,
+        note,
+        shippingFee,
+        paymentMethod,
+        bank: selectedBank
+          ? {
+              bankName: selectedBank.bankName,
+              accountNumber: selectedBank.accountNumber,
+              accountHolder: selectedBank.accountHolder,
+              promptPayId: selectedBank.promptPayId,
+              promptPayType: selectedBank.promptPayType,
+            }
+          : null,
+        items: items.filter((item) => item.name.trim() !== ""),
+        ceremony:
+          ceremonyEnabled && selectedCeremony
+            ? {
+                ceremonyName: selectedCeremony.name,
+                ceremonyDate: selectedCeremony.date,
+                participantName,
+                participantBirthday,
+                participantName2,
+                participantBirthday2,
+                participantSlots,
+                ceremonyNote: note,
+              }
+            : null,
+        passcode,
+      })
+
+      setSaveSuccess(result)
     } catch (err) {
       setSaveError(err instanceof Error ? err.message : "บันทึกล้มเหลว")
     }
@@ -72,6 +136,7 @@ export function OrderForm() {
   }
 
   return (
+    <>
     <form onSubmit={handleSave} className="space-y-5">
       {/* Customer */}
       <div className="glass-panel p-5">
@@ -160,7 +225,85 @@ export function OrderForm() {
         <div className="glass-panel !border-rose-500/30 !bg-rose-500/5 p-3 text-center text-sm text-rose-400 font-heading">{saveError}</div>
       )}
 
+      {/* Success */}
+      {saveSuccess && (
+        <div className="glass-panel !border-emerald-500/30 !bg-emerald-500/5 p-5 space-y-4">
+          <div className="flex items-center gap-2 text-emerald-400">
+            <CheckCircle2 className="h-5 w-5" />
+            <span className="font-heading font-bold text-base">บันทึกออร์เดอร์เรียบร้อย ✅</span>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-2">
+            <div>
+              <span className="text-[10px] uppercase tracking-wider text-gold-100/30">Order ID</span>
+              <div className="flex items-center gap-2 mt-1">
+                <code className="rounded-lg bg-black/30 px-3 py-1.5 text-gold-500 font-mono text-sm font-bold">
+                  {saveSuccess.orderId}
+                </code>
+                <button
+                  type="button"
+                  onClick={() => navigator.clipboard.writeText(saveSuccess.orderId)}
+                  className="rounded-lg p-1.5 text-gold-100/50 hover:text-gold-500 hover:bg-gold-500/10 transition-colors"
+                  title="คัดลอก OrderID"
+                >
+                  <Copy className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <span className="text-[10px] uppercase tracking-wider text-gold-100/30">ลิงก์แชร์ LINE</span>
+              <div className="flex items-center gap-2 mt-1">
+                <a
+                  href={saveSuccess.shareUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-lg bg-gold-500/10 px-3 py-1.5 text-gold-400 font-mono text-sm underline truncate max-w-[260px] block hover:text-gold-300 transition-colors"
+                >
+                  {saveSuccess.shareUrl}
+                </a>
+                <button
+                  type="button"
+                  onClick={() => navigator.clipboard.writeText(saveSuccess.shareUrl)}
+                  className="rounded-lg p-1.5 text-gold-100/50 hover:text-gold-500 hover:bg-gold-500/10 transition-colors"
+                  title="คัดลอกลิงก์"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex gap-3 pt-2">
+            <button
+              type="button"
+              onClick={resetForm}
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 px-5 py-2.5 text-sm font-heading font-bold text-black shadow-gold hover:brightness-110 transition-all"
+            >
+              + สร้างออร์เดอร์ใหม่
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowBeamQr(true)}
+              className="inline-flex items-center gap-2 rounded-xl border border-gold-500/30 bg-black/20 px-5 py-2.5 text-sm font-heading text-gold-500 hover:bg-gold-500/10 transition-all"
+            >
+              <QrCode className="h-4 w-4" />
+              QR พร้อมเพย์
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowShare(true)}
+              className="inline-flex items-center gap-2 rounded-xl border border-gold-500/30 bg-black/20 px-5 py-2.5 text-sm font-heading text-gold-500 hover:bg-gold-500/10 transition-all"
+            >
+              <Send className="h-4 w-4" />
+              แชร์ LINE
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Sticky save bar */}
+      {!saveSuccess && (
       <div className="sticky bottom-0 -mx-4 px-4 py-3 bg-gradient-to-t from-[#0A0005] via-[#1D1A39]/95 to-transparent border-t border-gold-500/10 backdrop-blur-xl">
         <div className="flex items-center justify-between">
           <div>
@@ -174,6 +317,25 @@ export function OrderForm() {
           </button>
         </div>
       </div>
+      )}
     </form>
+
+    {/* Beam QR Modal */}
+    {showBeamQr && saveSuccess && (
+      <BeamQrModal
+        orderId={saveSuccess.orderId}
+        totalPrice={items.reduce((sum, i) => sum + ((i.unitPrice - i.discount) * i.quantity), 0) + shippingFee}
+        onClose={() => setShowBeamQr(false)}
+      />
+    )}
+
+    {/* Share Modal */}
+    {showShare && saveSuccess && (
+      <ShareModal
+        orderId={saveSuccess.orderId}
+        onClose={() => setShowShare(false)}
+      />
+    )}
+  </>
   )
 }

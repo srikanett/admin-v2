@@ -2,7 +2,15 @@
 // Helper Utilities
 // ═══════════════════════════════════════════════
 
-import type { DocumentSnapshot, DocumentData } from "firebase/firestore"
+import {
+  doc,
+  runTransaction,
+  serverTimestamp,
+  type Firestore,
+  type DocumentSnapshot,
+  type DocumentData,
+} from "firebase/firestore"
+import { getDbInstance } from "@/lib/firebase"
 
 /**
  * Read a field from Firestore doc, trying multiple key variants.
@@ -102,8 +110,7 @@ export function stripTitle(name: string): string {
 }
 
 /**
- * Format OrderID: DDMMYY-NNN
- * Sequence is typically managed via Firestore orderIdLedger
+ * Format OrderID: DDMMYY-NNN (no DB access — use generateOrderId for Firestore-backed IDs)
  */
 export function formatOrderId(date: Date, sequence: number): string {
   const dd = String(date.getDate()).padStart(2, "0")
@@ -118,4 +125,44 @@ export function formatOrderId(date: Date, sequence: number): string {
  */
 export function formatCeremonyOrderId(date: Date, sequence: number): string {
   return `CO-${formatOrderId(date, sequence)}`
+}
+
+/**
+ * Generate a new OrderID backed by Firestore orderIdLedger.
+ *
+ * Reads `orderIdLedger/{DDMMYY}`, increments the sequence atomically
+ * via a Firestore transaction, and returns the formatted ID.
+ *
+ * @param type - 'product' → DDMMYY-NNN, 'ceremony' → CO-DDMMYY-NNN
+ */
+export async function generateOrderId(
+  type: "product" | "ceremony" = "product",
+  db?: Firestore,
+): Promise<string> {
+  const firestore = db ?? getDbInstance()
+  const now = new Date()
+  const dd = String(now.getDate()).padStart(2, "0")
+  const mm = String(now.getMonth() + 1).padStart(2, "0")
+  const yy = String(now.getFullYear()).slice(-2)
+  const dateKey = `${dd}${mm}${yy}`
+
+  const ledgerRef = doc(firestore, "orderIdLedger", dateKey)
+
+  const sequence = await runTransaction(firestore, async (tx) => {
+    const snap = await tx.get(ledgerRef)
+    if (!snap.exists()) {
+      tx.set(ledgerRef, { sequence: 2, lastUpdated: serverTimestamp() })
+      return 1
+    }
+    const current = readField_<number>(snap, ["sequence", "Sequence"], 0) ?? 0
+    const next = current + 1
+    tx.update(ledgerRef, { sequence: next, lastUpdated: serverTimestamp() })
+    return next
+  })
+
+  const seq = String(sequence).padStart(3, "0")
+  if (type === "ceremony") {
+    return `CO-${dateKey}-${seq}`
+  }
+  return `${dateKey}-${seq}`
 }
