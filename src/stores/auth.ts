@@ -1,5 +1,4 @@
 import { create } from "zustand"
-import { auth, db } from "@/lib/firebase"
 import {
   signInWithCustomToken,
   signOut,
@@ -8,6 +7,12 @@ import {
 } from "firebase/auth"
 import { doc, setDoc, serverTimestamp } from "firebase/firestore"
 import { COLLECTIONS, CF_BASE_URL } from "@/lib/constants"
+import {
+  initFirebase,
+  getAuthInstance,
+  getDbInstance,
+  isInitialized,
+} from "@/lib/firebase"
 
 interface AuthState {
   user: User | null
@@ -15,67 +20,86 @@ interface AuthState {
   isAuthenticated: boolean
   passcode: string
 
-  // Actions
-  init: () => () => void // returns unsubscribe
+  init: () => () => void
   login: (passcode: string) => Promise<void>
   logout: () => Promise<void>
-  setPasscode: (code: string) => void
-  clearPasscode: () => void
 }
 
-export const useAuthStore = create<AuthState>((set, get) => ({
+export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   isLoading: true,
   isAuthenticated: false,
   passcode: "",
 
   init: () => {
-    const unsub = onAuthStateChanged(auth, (user) => {
-      set({
-        user,
-        isLoading: false,
-        isAuthenticated: !!user,
-      })
-    })
-    return unsub
+    // Start auth listener — will fire once Firebase is initialized
+    const setupListener = () => {
+      try {
+        const auth = getAuthInstance()
+        return onAuthStateChanged(auth, (user) => {
+          set({
+            user,
+            isLoading: false,
+            isAuthenticated: !!user,
+          })
+        })
+      } catch {
+        // Not initialized yet — check again soon
+        const timer = setTimeout(setupListener, 100)
+        return () => clearTimeout(timer)
+      }
+    }
+
+    const unsub = setupListener()
+
+    // Auto-initialize Firebase
+    initFirebase().catch(console.error)
+
+    return () => {
+      if (typeof unsub === "function") unsub()
+    }
   },
 
   login: async (passcode: string) => {
+    // Ensure Firebase is initialized with correct config
+    await initFirebase()
+
+    // Call adminFastLogin Cloud Function
+    const res = await fetch(`${CF_BASE_URL}/adminFastLogin`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password: passcode }),
+    })
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}))
+      throw new Error(err.data?.message || err.message || "รหัสผ่านไม่ถูกต้อง")
+    }
+
+    const json = await res.json()
+
+    if (json.status !== "success" || !json.data?.valid) {
+      throw new Error(json.data?.message || "รหัสผ่านไม่ถูกต้อง")
+    }
+
+    const { customToken } = json.data
+
+    if (!customToken) {
+      throw new Error("ไม่สามารถสร้าง token ได้")
+    }
+
+    // Sign in with custom token
+    const auth = getAuthInstance()
+    await signInWithCustomToken(auth, customToken)
+
+    // Store passcode for Cloud Function calls
+    set({ passcode })
+
+    // Create/renew session in Firestore (non-critical — don't block login)
     try {
-      // Call adminFastLogin Cloud Function
-      const res = await fetch(`${CF_BASE_URL}/adminFastLogin`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password: passcode }),
-      })
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}))
-        throw new Error(err.data?.message || err.message || "รหัสผ่านไม่ถูกต้อง")
-      }
-
-      const json = await res.json()
-
-      // CF returns { status: "success", data: { valid, customToken, ... } }
-      if (json.status !== "success" || !json.data?.valid) {
-        throw new Error(json.data?.message || "รหัสผ่านไม่ถูกต้อง")
-      }
-
-      const { customToken } = json.data
-
-      if (!customToken) {
-        throw new Error("ไม่สามารถสร้าง token ได้")
-      }
-
-      // Sign in with custom token
-      await signInWithCustomToken(auth, customToken)
-
-      // Store passcode in memory (for Cloud Function calls)
-      set({ passcode })
-
-      // Create/renew session in Firestore
       const user = auth.currentUser
       if (user) {
+        const db = getDbInstance()
         const sessionRef = doc(db, COLLECTIONS.CF_SESSIONS, user.uid)
         await setDoc(
           sessionRef,
@@ -87,17 +111,20 @@ export const useAuthStore = create<AuthState>((set, get) => ({
           { merge: true }
         )
       }
-    } catch (error) {
-      set({ passcode: "" })
-      throw error
+    } catch {
+      // Session write failed — security rules may block it.
+      // Login still works. This is non-critical.
+      console.warn("cfSessions write blocked by security rules — login continues")
     }
   },
 
   logout: async () => {
     set({ passcode: "" })
-    await signOut(auth)
+    try {
+      const auth = getAuthInstance()
+      await signOut(auth)
+    } catch {
+      // Already signed out
+    }
   },
-
-  setPasscode: (code: string) => set({ passcode: code }),
-  clearPasscode: () => set({ passcode: "" }),
 }))
