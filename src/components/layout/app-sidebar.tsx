@@ -18,7 +18,10 @@ type MenuGroup = {
 const menuGroups: MenuGroup[] = [
   {
     label: "",
-    items: [{ icon: <Home size={18} />, label: "สร้างออร์เดอร์ใหม่", path: "/create-order" }],
+    items: [
+      { icon: <Home size={18} />, label: "สร้างออร์เดอร์ใหม่", path: "/create-order" },
+      { icon: <Package size={18} />, label: "จัดการออร์เดอร์", path: "/manage-orders" },
+    ],
   },
   {
     label: "เครื่องมือ",

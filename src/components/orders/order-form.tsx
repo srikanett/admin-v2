@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react"
+import { useState, useEffect, type FormEvent } from "react"
 import { useAuthStore } from "@/stores/auth"
 import type { Bank, Ceremony, PaymentMethod } from "@/types"
 import type { OrderItemData } from "./product-row"
@@ -9,13 +9,38 @@ import {
   formatThaiCurrency,
   normalizePhone,
 } from "@/lib/helpers"
-import { createOrder, type CreateOrderResult } from "@/hooks/use-orders"
+import { createOrder, updateOrder, type CreateOrderResult } from "@/hooks/use-orders"
 import { Save, CheckCircle2, Copy, ExternalLink, QrCode, Send } from "lucide-react"
 import { BeamQrModal } from "./beam-qr"
 import { ShareModal } from "./share-modal"
 
-export function OrderForm() {
+export interface OrderFormEditData {
+  customerName: string
+  customerPhone: string
+  customerAddress: string
+  customerBirthday: string
+  note: string
+  shippingFee: number
+  paymentMethod: PaymentMethod
+  isCeremony: boolean
+  ceremonyName?: string
+  ceremonyDate?: string
+  participantName?: string
+  participantBirthday?: string
+  participantName2?: string
+  participantBirthday2?: string
+  participantSlots?: number
+}
+
+interface OrderFormProps {
+  editData?: OrderFormEditData
+  editOrderDocId?: string
+  editIsCeremony?: boolean
+}
+
+export function OrderForm({ editData, editOrderDocId, editIsCeremony }: OrderFormProps) {
   const { passcode } = useAuthStore()
+  const isEditing = !!editData && !!editOrderDocId
 
   // Form state
   const [customerName, setCustomerName] = useState("")
@@ -48,6 +73,24 @@ export function OrderForm() {
   const [saveSuccess, setSaveSuccess] = useState<CreateOrderResult | null>(null)
   const [showBeamQr, setShowBeamQr] = useState(false)
   const [showShare, setShowShare] = useState(false)
+
+  // Prefill from edit data
+  useEffect(() => {
+    if (!editData) return
+    setCustomerName(editData.customerName)
+    setCustomerPhone(editData.customerPhone)
+    setCustomerAddress(editData.customerAddress)
+    setCustomerBirthday(editData.customerBirthday)
+    setNote(editData.note)
+    setShippingFee(editData.shippingFee)
+    setPaymentMethod(editData.paymentMethod)
+    setCeremonyEnabled(editData.isCeremony)
+    setParticipantName(editData.participantName ?? "")
+    setParticipantBirthday(editData.participantBirthday ?? "")
+    setParticipantName2(editData.participantName2 ?? "")
+    setParticipantBirthday2(editData.participantBirthday2 ?? "")
+    setParticipantSlots(editData.participantSlots ?? 1)
+  }, [editData])
 
   /** Reset form to defaults */
   const resetForm = () => {
@@ -93,7 +136,26 @@ export function OrderForm() {
 
     setIsSaving(true)
     try {
-      const result = await createOrder({
+      if (isEditing) {
+        // Update existing order
+        await updateOrder(editOrderDocId!, {
+          CustomerName: customerName.trim(),
+          CustomerPhone: customerPhone.trim(),
+          CustomerAddress: customerAddress.trim(),
+          CustomerBirthday: customerBirthday.trim(),
+          Note: note.trim(),
+          ShippingFee: shippingFee,
+          PaymentMethod: paymentMethod,
+          // Note: items and bank not updated in this simple version
+        } as Partial<import("@/types").OrderFields>, editIsCeremony)
+
+        setSaveSuccess({
+          orderId: editData!.ceremonyName ? `CO-${editData!.customerName}` : editData!.customerName,
+          docId: editOrderDocId!,
+          shareUrl: `https://order.srikanett.com/order/${editData!.customerName}`,
+        })
+      } else {
+        const result = await createOrder({
         type: ceremonyEnabled && selectedCeremony ? "ceremony" : "product",
         customerName,
         customerPhone,
@@ -128,7 +190,10 @@ export function OrderForm() {
         passcode,
       })
 
+      void result; // type guard
+
       setSaveSuccess(result)
+      } // end else
     } catch (err) {
       setSaveError(err instanceof Error ? err.message : "บันทึกล้มเหลว")
     }
