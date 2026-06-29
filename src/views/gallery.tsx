@@ -37,7 +37,7 @@ export function galleryView() {
         {loading ? (
           <div className="flex justify-center py-20"><Loader2 size={32} className="animate-spin text-gold-500" /></div>
         ) : images.length === 0 ? (
-          <div className="flex flex-col items-center py-20 text-gold-100/30"><Image size={48} className="mb-3" /><p className="font-heading">ยังไม่มีรูปภาพ</p></div>
+          <div className="flex flex-col items-center py-20 text-gold-100/55"><Image size={48} className="mb-3" /><p className="font-heading">ยังไม่มีรูปภาพ</p></div>
         ) : (
           <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
             {images.map((url, i) => (

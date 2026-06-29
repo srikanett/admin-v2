@@ -564,7 +564,7 @@ export function broadcastView() {
                   className="rounded-xl border border-gold-500/10 bg-black/20 p-4 space-y-3"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-heading text-gold-500/50">
+                    <span className="text-xs font-heading text-gold-500/75">
                       บล็อกที่ {idx + 1}
                     </span>
                     {blocks.length > 1 && (
@@ -639,13 +639,13 @@ export function broadcastView() {
                         : `${parsedTags().length || 0} แท็ก`}
                   </span>
                 </span>
-                <span className="text-white/30">|</span>
+                <span className="text-white/55">|</span>
                 <span className="flex items-center gap-1">
                   <Megaphone className="h-3.5 w-3.5 text-gold-500" />
                   บล็อก:{" "}
                   <span className="text-white">{blocks.length} บล็อก</span>
                 </span>
-                <span className="text-white/30">|</span>
+                <span className="text-white/55">|</span>
                 <span className="flex items-center gap-1">
                   <Clock className="h-3.5 w-3.5 text-gold-500" />
                   {sendMode === "now" ? "ส่งทันที" : "ตั้งเวลาส่ง"}
@@ -695,7 +695,7 @@ export function broadcastView() {
 
           <div className="space-y-3 max-h-[60vh] overflow-y-auto py-2">
             <div className="rounded-lg border border-gold-500/10 bg-black/30 p-4">
-              <div className="flex items-center gap-2 mb-3 text-xs text-gold-500/50">
+              <div className="flex items-center gap-2 mb-3 text-xs text-gold-500/75">
                 <Megaphone className="h-3 w-3" />
                 แม่แบบ: {template}
               </div>
@@ -726,7 +726,7 @@ export function broadcastView() {
               </div>
             </div>
 
-            <div className="text-xs text-white/40 space-y-1">
+            <div className="text-xs text-white/70 space-y-1">
               <div className="flex items-center gap-2">
                 <Users className="h-3 w-3" />
                 <span>
@@ -847,7 +847,7 @@ export function broadcastView() {
                 <Loader2 className="h-6 w-6 animate-spin text-gold-500" />
               </div>
             ) : drafts.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-12 text-white/40 gap-2">
+              <div className="flex flex-col items-center justify-center py-12 text-white/70 gap-2">
                 <History className="h-10 w-10" />
                 <p>ยังไม่มีประวัติการส่ง</p>
               </div>

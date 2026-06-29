@@ -99,7 +99,7 @@ export function createOrderView() {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-3">
         <Loader2 size={32} className="animate-spin text-gold-500" />
-        <p className="text-gold-100/50 font-heading text-sm">กำลังโหลดออร์เดอร์...</p>
+        <p className="text-gold-100/80 font-heading text-sm">กำลังโหลดออร์เดอร์...</p>
       </div>
     )
   }

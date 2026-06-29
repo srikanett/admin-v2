@@ -125,7 +125,7 @@ export function AppSidebar({ isOpen, onClose, onLogout }: AppSidebarProps) {
             </div>
             <div>
               <h2 className="text-sm font-bold tracking-wide text-gold-500">ศรีคเนศ เทวาลัย</h2>
-              <p className="text-[10px] tracking-[0.15em] text-gold-100/30 uppercase">Admin Panel</p>
+              <p className="text-[10px] tracking-[0.15em] text-gold-100/55 uppercase">Admin Panel</p>
             </div>
           </div>
         </div>
@@ -137,7 +137,7 @@ export function AppSidebar({ isOpen, onClose, onLogout }: AppSidebarProps) {
               {group.label && (
                 <button
                   onClick={() => toggleGroup(group.label)}
-                  className="flex w-full items-center gap-1.5 px-3 py-2 text-[11px] font-medium tracking-widest text-gold-100/30 hover:text-gold-100/50 uppercase transition-colors"
+                  className="flex w-full items-center gap-1.5 px-3 py-2 text-[11px] font-medium tracking-widest text-gold-100/55 hover:text-gold-100/80 uppercase transition-colors"
                 >
                   {collapsedGroups.has(group.label) ? <ChevronRight size={12} /> : <ChevronDown size={12} />}
                   {group.label}
@@ -157,12 +157,12 @@ export function AppSidebar({ isOpen, onClose, onLogout }: AppSidebarProps) {
                           "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-all duration-200 group",
                           isActive
                             ? "bg-gold-500/12 text-gold-500 font-medium border border-gold-500/15 shadow-inner shadow-gold-500/5"
-                            : "text-white/55 hover:bg-white/[0.03] hover:text-white/80"
+                            : "text-white/85 hover:bg-white/[0.03] hover:text-white/80"
                         )}
                       >
                         <span className={cn(
                           "flex-shrink-0 transition-colors",
-                          isActive ? "text-gold-500" : "text-gold-100/25 group-hover:text-gold-100/50"
+                          isActive ? "text-gold-500" : "text-gold-100/70 group-hover:text-gold-100/90"
                         )}>
                           {item.icon}
                         </span>
@@ -181,7 +181,7 @@ export function AppSidebar({ isOpen, onClose, onLogout }: AppSidebarProps) {
 
         {/* Bottom */}
         <div className="border-t border-gold-500/10 px-3 py-3 space-y-1">
-          <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-white/40 hover:bg-white/[0.03] hover:text-gold-500/70 transition-colors">
+          <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-white/70 hover:bg-white/[0.03] hover:text-gold-500/70 transition-colors">
             <Key size={16} />
             เปลี่ยนรหัสผ่าน
           </button>

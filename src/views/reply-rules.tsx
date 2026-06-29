@@ -292,7 +292,7 @@ export function replyRulesView() {
       <div className="relative">
         <Search
           size={18}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-gold-100/30 pointer-events-none"
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-gold-100/55 pointer-events-none"
         />
         <input
           className="themed-input pl-10"
@@ -310,8 +310,8 @@ export function replyRulesView() {
           </div>
         ) : filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <MessageSquare size={48} className="text-gold-100/15 mb-3" />
-            <p className="text-gold-100/30 text-sm">
+            <MessageSquare size={48} className="text-gold-100/35 mb-3" />
+            <p className="text-gold-100/55 text-sm">
               {search ? "ไม่พบกฎการตอบกลับที่ค้นหา" : "ยังไม่มีกฎการตอบกลับ"}
             </p>
             {!search && (
@@ -345,7 +345,7 @@ export function replyRulesView() {
                     <TableCell className="font-medium text-gold-100/90">
                       {rule.name}
                     </TableCell>
-                    <TableCell className="text-gold-100/60">
+                    <TableCell className="text-gold-100/75">
                       <div className="flex flex-wrap gap-1">
                         {rule.keywords
                           .split(",")
@@ -359,14 +359,14 @@ export function replyRulesView() {
                             </span>
                           ))}
                         {!rule.keywords.trim() && (
-                          <span className="text-gold-100/25 italic">—</span>
+                          <span className="text-gold-100/70 italic">—</span>
                         )}
                       </div>
                     </TableCell>
-                    <TableCell className="text-center text-gold-100/60">
+                    <TableCell className="text-center text-gold-100/75">
                       {rule.messageBlocks.length}
                     </TableCell>
-                    <TableCell className="text-center text-gold-100/60">
+                    <TableCell className="text-center text-gold-100/75">
                       {rule.quickReplies.length}
                     </TableCell>
                     <TableCell className="text-center">
@@ -384,21 +384,21 @@ export function replyRulesView() {
                         )}
                       </button>
                     </TableCell>
-                    <TableCell className="text-gold-100/40 text-xs">
+                    <TableCell className="text-gold-100/65 text-xs">
                       {formatMatchTime(rule.lastMatchedAt)}
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => openEdit(rule)}
-                          className="p-2 rounded-lg hover:bg-gold-500/10 text-gold-100/40 hover:text-gold-400 transition-colors"
+                          className="p-2 rounded-lg hover:bg-gold-500/10 text-gold-100/65 hover:text-gold-400 transition-colors"
                           title="แก้ไข"
                         >
                           <Edit3 size={16} />
                         </button>
                         <button
                           onClick={() => setDeleteTarget(rule)}
-                          className="p-2 rounded-lg hover:bg-red-500/10 text-gold-100/40 hover:text-red-400 transition-colors"
+                          className="p-2 rounded-lg hover:bg-red-500/10 text-gold-100/65 hover:text-red-400 transition-colors"
                           title="ลบ"
                         >
                           <Trash2 size={16} />
@@ -420,7 +420,7 @@ export function replyRulesView() {
             <DialogTitle className="text-gold-100 aurora-heading text-lg">
               {editing.id ? "แก้ไขกฎการตอบกลับ" : "เพิ่มกฎการตอบกลับใหม่"}
             </DialogTitle>
-            <DialogDescription className="text-gold-100/40 text-sm">
+            <DialogDescription className="text-gold-100/65 text-sm">
               กำหนดข้อความตอบกลับอัตโนมัติเมื่อมีคำสำคัญตรงตามที่กำหนด
             </DialogDescription>
           </DialogHeader>
@@ -429,7 +429,7 @@ export function replyRulesView() {
             {/* ── Basic Info ── */}
             <div className="space-y-4">
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">
                   ชื่อกฎ *
                 </label>
                 <Input
@@ -440,7 +440,7 @@ export function replyRulesView() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">
                   คำสำคัญ (คั่นด้วยเครื่องหมายจุลภาค ,)
                 </label>
                 <Input
@@ -468,7 +468,7 @@ export function replyRulesView() {
 
               {/* ── Status Toggle ── */}
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">สถานะ</label>
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">สถานะ</label>
                 <button
                   onClick={() =>
                     setEditing((p) => ({
@@ -498,7 +498,7 @@ export function replyRulesView() {
             {/* ── Message Blocks ── */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <label className="text-sm text-gold-100/60 font-medium flex items-center gap-2">
+                <label className="text-sm text-gold-100/75 font-medium flex items-center gap-2">
                   <MessageCircle size={16} className="text-gold-400" />
                   บล็อกข้อความ
                 </label>
@@ -524,9 +524,9 @@ export function replyRulesView() {
 
               {editing.messageBlocks.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-8 rounded-xl border border-dashed border-gold-500/10 bg-black/10">
-                  <MessageCircle size={32} className="text-gold-100/15 mb-2" />
-                  <p className="text-gold-100/25 text-sm">ยังไม่มีบล็อกข้อความ</p>
-                  <p className="text-gold-100/15 text-xs mt-1">คลิกปุ่มด้านบนเพื่อเพิ่ม</p>
+                  <MessageCircle size={32} className="text-gold-100/35 mb-2" />
+                  <p className="text-gold-100/70 text-sm">ยังไม่มีบล็อกข้อความ</p>
+                  <p className="text-gold-100/35 text-xs mt-1">คลิกปุ่มด้านบนเพื่อเพิ่ม</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -535,7 +535,7 @@ export function replyRulesView() {
                       key={idx}
                       className="flex gap-3 p-3 rounded-xl border border-gold-500/10 bg-black/20"
                     >
-                      <div className="flex-shrink-0 mt-2 text-gold-100/20">
+                      <div className="flex-shrink-0 mt-2 text-gold-100/40">
                         <GripVertical size={16} />
                       </div>
                       <div className="flex-1 space-y-2">
@@ -554,7 +554,7 @@ export function replyRulesView() {
                             )}
                             {block.type === "text" ? "ข้อความ" : "รูปภาพ"}
                           </span>
-                          <span className="text-gold-100/20 text-xs">บล็อกที่ {idx + 1}</span>
+                          <span className="text-gold-100/40 text-xs">บล็อกที่ {idx + 1}</span>
                         </div>
                         {block.type === "text" ? (
                           <textarea
@@ -592,7 +592,7 @@ export function replyRulesView() {
                       <button
                         type="button"
                         onClick={() => removeMessageBlock(idx)}
-                        className="flex-shrink-0 p-1.5 rounded-lg hover:bg-red-500/10 text-gold-100/30 hover:text-red-400 transition-colors self-start"
+                        className="flex-shrink-0 p-1.5 rounded-lg hover:bg-red-500/10 text-gold-100/55 hover:text-red-400 transition-colors self-start"
                         title="ลบบล็อกนี้"
                       >
                         <X size={16} />
@@ -608,7 +608,7 @@ export function replyRulesView() {
             {/* ── Quick Replies ── */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <label className="text-sm text-gold-100/60 font-medium flex items-center gap-2">
+                <label className="text-sm text-gold-100/75 font-medium flex items-center gap-2">
                   <MessageSquare size={16} className="text-gold-400" />
                   Quick Reply (ปุ่มตอบกลับด่วน)
                 </label>
@@ -624,9 +624,9 @@ export function replyRulesView() {
 
               {editing.quickReplies.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-8 rounded-xl border border-dashed border-gold-500/10 bg-black/10">
-                  <MessageSquare size={32} className="text-gold-100/15 mb-2" />
-                  <p className="text-gold-100/25 text-sm">ยังไม่มี Quick Reply</p>
-                  <p className="text-gold-100/15 text-xs mt-1">
+                  <MessageSquare size={32} className="text-gold-100/35 mb-2" />
+                  <p className="text-gold-100/70 text-sm">ยังไม่มี Quick Reply</p>
+                  <p className="text-gold-100/35 text-xs mt-1">
                     Quick Reply คือปุ่มที่ผู้ใช้สามารถกดตอบกลับได้
                   </p>
                 </div>
@@ -637,12 +637,12 @@ export function replyRulesView() {
                       key={idx}
                       className="flex gap-3 p-3 rounded-xl border border-purple-500/10 bg-black/20"
                     >
-                      <div className="flex-shrink-0 mt-2 text-gold-100/20">
+                      <div className="flex-shrink-0 mt-2 text-gold-100/40">
                         <GripVertical size={16} />
                       </div>
                       <div className="flex-1 grid grid-cols-2 gap-2">
                         <div>
-                          <label className="block text-xs text-gold-100/40 mb-1">
+                          <label className="block text-xs text-gold-100/65 mb-1">
                             ป้ายกำกับ (Label)
                           </label>
                           <Input
@@ -655,7 +655,7 @@ export function replyRulesView() {
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-gold-100/40 mb-1">
+                          <label className="block text-xs text-gold-100/65 mb-1">
                             คำสั่ง (Action)
                           </label>
                           <Input
@@ -671,7 +671,7 @@ export function replyRulesView() {
                       <button
                         type="button"
                         onClick={() => removeQuickReply(idx)}
-                        className="flex-shrink-0 p-1.5 rounded-lg hover:bg-red-500/10 text-gold-100/30 hover:text-red-400 transition-colors self-start"
+                        className="flex-shrink-0 p-1.5 rounded-lg hover:bg-red-500/10 text-gold-100/55 hover:text-red-400 transition-colors self-start"
                         title="ลบ Quick Reply นี้"
                       >
                         <X size={16} />
@@ -686,7 +686,7 @@ export function replyRulesView() {
 
             {/* ── Preview ── */}
             <div>
-              <label className="text-sm text-gold-100/60 font-medium flex items-center gap-2 mb-3">
+              <label className="text-sm text-gold-100/75 font-medium flex items-center gap-2 mb-3">
                 <Eye size={16} className="text-gold-400" />
                 ตัวอย่างข้อความตอบกลับ
               </label>
@@ -696,7 +696,7 @@ export function replyRulesView() {
                   <div className="h-6 w-6 rounded-full bg-gold-500/20 flex items-center justify-center">
                     <MessageSquare size={12} className="text-gold-400" />
                   </div>
-                  <span className="text-xs text-gold-100/40">
+                  <span className="text-xs text-gold-100/65">
                     {editing.name || "ชื่อกฎการตอบกลับ"}
                   </span>
                   <span
@@ -712,7 +712,7 @@ export function replyRulesView() {
 
                 {/* Message blocks preview */}
                 {editing.messageBlocks.length === 0 ? (
-                  <p className="text-gold-100/20 text-sm italic text-center py-4">
+                  <p className="text-gold-100/65 text-sm italic text-center py-4">
                     ยังไม่มีบล็อกข้อความ
                   </p>
                 ) : (
@@ -724,7 +724,7 @@ export function replyRulesView() {
                           className="p-3 rounded-lg bg-gold-500/5 border border-gold-500/10 text-gold-100/80 text-sm whitespace-pre-wrap"
                         >
                           {block.content || (
-                            <span className="text-gold-100/20 italic">ข้อความว่างเปล่า</span>
+                            <span className="text-gold-100/40 italic">ข้อความว่างเปล่า</span>
                           )}
                         </div>
                       ) : (
@@ -740,14 +740,14 @@ export function replyRulesView() {
                                 const parent = el.parentElement
                                 if (parent) {
                                   const span = document.createElement("span")
-                                  span.className = "text-gold-100/20 italic text-sm"
+                                  span.className = "text-gold-100/40 italic text-sm"
                                   span.textContent = "ไม่สามารถโหลดรูปภาพได้"
                                   parent.appendChild(span)
                                 }
                               }}
                             />
                           ) : (
-                            <span className="text-gold-100/20 italic text-sm">
+                            <span className="text-gold-100/40 italic text-sm">
                               URL รูปภาพว่างเปล่า
                             </span>
                           )}
@@ -797,7 +797,7 @@ export function replyRulesView() {
               <AlertTriangle size={20} className="text-red-400" />
               ยืนยันการลบ
             </DialogTitle>
-            <DialogDescription className="text-gold-100/50">
+            <DialogDescription className="text-gold-100/80">
               คุณต้องการลบกฎการตอบกลับ{" "}
               <span className="text-gold-200 font-semibold">
                 "{deleteTarget?.name}"

@@ -31,7 +31,7 @@ export function ProductRow({
     <div className="flex flex-wrap items-end gap-2 rounded-xl border border-gold-500/10 bg-black/20 p-3">
       {/* Name autocomplete */}
       <div className="flex-1 min-w-[140px]">
-        <label className="mb-1 block text-[11px] text-gold-100/50">
+        <label className="mb-1 block text-[11px] text-gold-100/80">
           สินค้า {index + 1}
         </label>
         <input
@@ -52,7 +52,7 @@ export function ProductRow({
 
       {/* Unit Price */}
       <div className="w-20 md:w-24">
-        <label className="mb-1 block text-[11px] text-gold-100/50">
+        <label className="mb-1 block text-[11px] text-gold-100/80">
           ราคา/หน่วย
         </label>
         <input
@@ -71,7 +71,7 @@ export function ProductRow({
 
       {/* Quantity */}
       <div className="w-16">
-        <label className="mb-1 block text-[11px] text-gold-100/50">
+        <label className="mb-1 block text-[11px] text-gold-100/80">
           จำนวน
         </label>
         <input
@@ -90,7 +90,7 @@ export function ProductRow({
 
       {/* Discount */}
       <div className="w-20 md:w-24">
-        <label className="mb-1 block text-[11px] text-gold-100/50">
+        <label className="mb-1 block text-[11px] text-gold-100/80">
           ส่วนลด
         </label>
         <input
@@ -109,7 +109,7 @@ export function ProductRow({
 
       {/* Calculated price */}
       <div className="w-24">
-        <label className="mb-1 block text-[11px] text-gold-100/50">
+        <label className="mb-1 block text-[11px] text-gold-100/80">
           รวม
         </label>
         <div className="flex h-10 items-center justify-end rounded-xl bg-gold-500/10 px-3 text-sm font-medium text-gold-500 font-heading">

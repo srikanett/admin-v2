@@ -59,7 +59,7 @@ export function slipsView() {
       </div>
       <GlassPanel>
         {slips.length === 0 ? (
-          <div className="flex flex-col items-center py-20 text-gold-100/30"><Image size={48} className="mb-3" /><p className="font-heading">ยังไม่มีสลิป</p></div>
+          <div className="flex flex-col items-center py-20 text-gold-100/55"><Image size={48} className="mb-3" /><p className="font-heading">ยังไม่มีสลิป</p></div>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {slips.map((slip) => (
@@ -72,10 +72,10 @@ export function slipsView() {
                 <div className="p-3">
                   <div className="flex items-center justify-between mb-1">
                     <code className="text-xs text-gold-500 font-mono">{slip.orderId}</code>
-                    <ExternalLink size={12} className="text-gold-100/20 group-hover:text-gold-500 transition-colors" />
+                    <ExternalLink size={12} className="text-gold-100/40 group-hover:text-gold-500 transition-colors" />
                   </div>
                   <p className="text-sm text-white/90 font-heading truncate">{slip.customerName}</p>
-                  <p className="text-xs text-gold-100/50 mt-0.5">{formatThaiCurrency(slip.amount)} · {slip.uploadedAt}</p>
+                  <p className="text-xs text-gold-100/80 mt-0.5">{formatThaiCurrency(slip.amount)} · {slip.uploadedAt}</p>
                 </div>
               </a>
             ))}

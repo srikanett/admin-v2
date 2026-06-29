@@ -47,7 +47,7 @@ export function ProductSection({
     <GlassPanel variant="product" className="space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="aurora-heading-rose text-lg">รายการสินค้า</h3>
-        <span className="text-xs text-gold-100/40">
+        <span className="text-xs text-gold-100/65">
           {items.length}/{maxItems}
         </span>
       </div>
@@ -77,7 +77,7 @@ export function ProductSection({
           เพิ่มสินค้า
         </GoldButton>
         <div className="text-right">
-          <span className="text-[11px] text-gold-100/40 block">
+          <span className="text-[11px] text-gold-100/65 block">
             รวมราคาสินค้า
           </span>
           <span className="text-xl font-heading font-bold text-gold-500">

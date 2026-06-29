@@ -209,7 +209,7 @@ export function reportsView() {
       label: "สร้างใหม่",
       count: stats.statusCount["สร้างออร์เดอร์"] ?? 0,
       icon: <Clock size={20} />,
-      color: "text-gold-100/60",
+      color: "text-gold-100/75",
       bg: "bg-gold-100/5",
       border: "border-gold-100/10",
     },
@@ -235,11 +235,11 @@ export function reportsView() {
                 <span className={card.textColor}>{card.icon}</span>
               </div>
             </div>
-            <p className="text-xs text-gold-100/40 uppercase tracking-wider mb-1">
+            <p className="text-xs text-gold-100/65 uppercase tracking-wider mb-1">
               {card.label}
             </p>
             <p className="text-2xl font-heading font-bold text-white">{card.value}</p>
-            <p className="text-xs text-gold-100/50 mt-1">{card.sub}</p>
+            <p className="text-xs text-gold-100/80 mt-1">{card.sub}</p>
           </GlassPanel>
         ))}
       </div>
@@ -258,7 +258,7 @@ export function reportsView() {
             >
               <span className={card.color}>{card.icon}</span>
               <div>
-                <p className="text-xs text-gold-100/40">{card.label}</p>
+                <p className="text-xs text-gold-100/65">{card.label}</p>
                 <p className={`text-xl font-heading font-bold ${card.color}`}>
                   {card.count}
                 </p>
@@ -276,24 +276,24 @@ export function reportsView() {
         </h3>
         <div className="grid gap-4 md:grid-cols-2">
           <div className="rounded-xl bg-black/30 p-5 border border-gold-500/10">
-            <p className="text-xs text-gold-100/40 uppercase tracking-wider mb-2">
+            <p className="text-xs text-gold-100/65 uppercase tracking-wider mb-2">
               วันนี้
             </p>
             <p className="text-3xl font-heading font-bold text-gold-500">
               {formatThaiCurrency(stats.todayRevenue)}
             </p>
-            <p className="text-sm text-gold-100/50 mt-1">
+            <p className="text-sm text-gold-100/80 mt-1">
               จาก {stats.todayOrders} ออร์เดอร์
             </p>
           </div>
           <div className="rounded-xl bg-black/30 p-5 border border-gold-500/10">
-            <p className="text-xs text-gold-100/40 uppercase tracking-wider mb-2">
+            <p className="text-xs text-gold-100/65 uppercase tracking-wider mb-2">
               เดือนนี้
             </p>
             <p className="text-3xl font-heading font-bold text-gold-500">
               {formatThaiCurrency(stats.monthRevenue)}
             </p>
-            <p className="text-sm text-gold-100/50 mt-1">
+            <p className="text-sm text-gold-100/80 mt-1">
               จาก {stats.monthOrders} ออร์เดอร์
             </p>
           </div>

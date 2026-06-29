@@ -1,0 +1,19 @@
+{
+  "name": "ศรีคเนศ เทวาลัย · Admin",
+  "short_name": "ศรีคเนศ",
+  "description": "Srikanett Dhevalai Order Management System",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1D1A39",
+  "theme_color": "#1D1A39",
+  "lang": "th",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

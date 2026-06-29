@@ -46,7 +46,7 @@ export function LoginPage() {
             <h1 className="text-2xl font-bold tracking-wider text-gold-500">
               ศรีคเนศ เทวาลัย
             </h1>
-            <p className="mt-1 text-xs tracking-[0.15em] text-gold-100/40 uppercase">
+            <p className="mt-1 text-xs tracking-[0.15em] text-gold-100/65 uppercase">
               Srikanett Dhevalai
             </p>
           </div>
@@ -55,7 +55,7 @@ export function LoginPage() {
         {/* Login card */}
         <form onSubmit={handleSubmit} className="glass-panel-strong space-y-5 p-6">
           <div className="space-y-2">
-            <label className="block text-center text-xs font-medium tracking-wider text-gold-100/50 uppercase">
+            <label className="block text-center text-xs font-medium tracking-wider text-gold-100/80 uppercase">
               รหัสผ่านผู้ดูแลระบบ
             </label>
             <input
@@ -91,12 +91,12 @@ export function LoginPage() {
 
           <div className="flex items-center gap-3">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gold-500/20 to-transparent" />
-            <p className="text-[10px] text-gold-100/20">SECURE • ENCRYPTED</p>
+            <p className="text-[10px] text-gold-100/40">SECURE • ENCRYPTED</p>
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gold-500/20 to-transparent" />
           </div>
         </form>
 
-        <p className="text-center text-[11px] text-gold-100/15 tracking-wider">
+        <p className="text-center text-[11px] text-gold-100/35 tracking-wider">
           © {new Date().getFullYear()} SRIKANETT DHEVALAI
         </p>
       </div>

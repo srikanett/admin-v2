@@ -18,7 +18,7 @@ function LazyView(path: string, exportName: string) {
   if (!loader) {
     // Return a fallback component if module not found
     return () => (
-      <div className="flex flex-col items-center justify-center py-20 text-gold-100/30">
+      <div className="flex flex-col items-center justify-center py-20 text-gold-100/55">
         <p className="font-heading">ไม่พบหน้า: {path}</p>
       </div>
     )

@@ -28,7 +28,7 @@ export function AppShell() {
       <div className="flex h-screen items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="h-10 w-10 animate-spin rounded-full border-2 border-gold-500 border-t-transparent" />
-          <p className="text-gold-100/60 text-sm font-heading">กำลังโหลด...</p>
+          <p className="text-gold-100/75 text-sm font-heading">กำลังโหลด...</p>
         </div>
       </div>
     )

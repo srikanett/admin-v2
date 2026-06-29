@@ -236,7 +236,7 @@ export function manageProductView() {
         <div className="relative">
           <Search
             size={18}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gold-100/30 pointer-events-none"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gold-100/55 pointer-events-none"
           />
           <input
             className="themed-input pl-10"
@@ -253,7 +253,7 @@ export function manageProductView() {
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                 activeCategory === cat
                   ? "bg-gold-500 text-black font-semibold shadow-gold"
-                  : "glass-panel border-gold-500/10 text-gold-100/50 hover:text-gold-200 hover:border-gold-500/30"
+                  : "glass-panel border-gold-500/10 text-gold-100/80 hover:text-gold-200 hover:border-gold-500/30"
               }`}
             >
               {cat}
@@ -270,8 +270,8 @@ export function manageProductView() {
           </div>
         ) : filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <Package size={48} className="text-gold-100/15 mb-3" />
-            <p className="text-gold-100/30 text-sm">
+            <Package size={48} className="text-gold-100/35 mb-3" />
+            <p className="text-gold-100/55 text-sm">
               {search || activeCategory !== "ทั้งหมด" ? "ไม่พบสินค้าที่ค้นหา" : "ยังไม่มีสินค้า"}
             </p>
           </div>
@@ -302,11 +302,11 @@ export function manageProductView() {
                     <span className="text-sm font-heading text-gold-400">
                       ฿{formatThaiCurrency(p.price)}
                     </span>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-gold-500/10 text-gold-100/40">
+                    <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-gold-500/10 text-gold-100/65">
                       {p.category}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 mt-1 text-xs text-gold-100/40">
+                  <div className="flex items-center gap-2 mt-1 text-xs text-gold-100/65">
                     <span className="flex items-center gap-0.5">
                       <Tag size={10} /> {p.unit}
                     </span>
@@ -322,7 +322,7 @@ export function manageProductView() {
                       e.stopPropagation()
                       openEdit(p)
                     }}
-                    className="flex-1 py-1.5 rounded-lg text-xs text-gold-100/50 hover:bg-gold-500/10 hover:text-gold-400 transition-colors flex items-center justify-center gap-1"
+                    className="flex-1 py-1.5 rounded-lg text-xs text-gold-100/80 hover:bg-gold-500/10 hover:text-gold-400 transition-colors flex items-center justify-center gap-1"
                   >
                     <Edit3 size={12} /> แก้ไข
                   </button>
@@ -331,7 +331,7 @@ export function manageProductView() {
                       e.stopPropagation()
                       setDeleteTarget(p)
                     }}
-                    className="flex-1 py-1.5 rounded-lg text-xs text-gold-100/50 hover:bg-red-500/10 hover:text-red-400 transition-colors flex items-center justify-center gap-1"
+                    className="flex-1 py-1.5 rounded-lg text-xs text-gold-100/80 hover:bg-red-500/10 hover:text-red-400 transition-colors flex items-center justify-center gap-1"
                   >
                     <Trash2 size={12} /> ลบ
                   </button>
@@ -341,7 +341,7 @@ export function manageProductView() {
           </div>
         )}
         {/* Footer count */}
-        <div className="px-4 py-3 border-t border-gold-500/10 text-xs text-gold-100/30">
+        <div className="px-4 py-3 border-t border-gold-500/10 text-xs text-gold-100/55">
           แสดง {filtered.length} จาก {products.length} รายการ
         </div>
       </GlassPanel>
@@ -353,14 +353,14 @@ export function manageProductView() {
             <DialogTitle className="text-gold-100 aurora-heading text-lg">
               {editing.id ? "แก้ไขสินค้า" : "เพิ่มสินค้าใหม่"}
             </DialogTitle>
-            <DialogDescription className="text-gold-100/40 text-sm">
+            <DialogDescription className="text-gold-100/65 text-sm">
               อัปโหลดรูปและกรอกรายละเอียดสินค้า
             </DialogDescription>
           </DialogHeader>
 
           {/* ── Image Upload ── */}
           <div>
-            <label className="block text-xs text-gold-100/50 mb-2 font-medium">
+            <label className="block text-xs text-gold-100/80 mb-2 font-medium">
               <ImageIcon size={12} className="inline mr-1" />
               รูปสินค้า
             </label>
@@ -382,7 +382,7 @@ export function manageProductView() {
                   type="file"
                   accept="image/jpeg,image/png,image/webp"
                   onChange={handleImageUpload}
-                  className="text-xs text-gold-100/40 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:bg-gold-500/15 file:text-gold-200 hover:file:bg-gold-500/25"
+                  className="text-xs text-gold-100/65 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:bg-gold-500/15 file:text-gold-200 hover:file:bg-gold-500/25"
                 />
                 {imagePreview && (
                   <button
@@ -404,7 +404,7 @@ export function manageProductView() {
           {/* ── Form Fields ── */}
           <div className="space-y-4">
             <div>
-              <label className="block text-xs text-gold-100/50 mb-1 font-medium">ชื่อสินค้า *</label>
+              <label className="block text-xs text-gold-100/80 mb-1 font-medium">ชื่อสินค้า *</label>
               <Input
                 className="themed-input"
                 placeholder="ชื่อสินค้า"
@@ -414,7 +414,7 @@ export function manageProductView() {
             </div>
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">ราคา *</label>
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">ราคา *</label>
                 <Input
                   className="themed-input"
                   type="number"
@@ -428,7 +428,7 @@ export function manageProductView() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">ต้นทุน</label>
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">ต้นทุน</label>
                 <Input
                   className="themed-input"
                   type="number"
@@ -446,7 +446,7 @@ export function manageProductView() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">สต๊อก</label>
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">สต๊อก</label>
                 <Input
                   className="themed-input"
                   type="number"
@@ -465,7 +465,7 @@ export function manageProductView() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">หมวดหมู่</label>
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">หมวดหมู่</label>
                 <select
                   className="themed-input"
                   value={editing.category || "สินค้าบูชา"}
@@ -479,7 +479,7 @@ export function manageProductView() {
                 </select>
               </div>
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">หน่วย</label>
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">หน่วย</label>
                 <select
                   className="themed-input"
                   value={editing.unit || "องค์"}
@@ -518,7 +518,7 @@ export function manageProductView() {
               <AlertTriangle size={20} className="text-red-400" />
               ยืนยันการลบสินค้า
             </DialogTitle>
-            <DialogDescription className="text-gold-100/50">
+            <DialogDescription className="text-gold-100/80">
               คุณต้องการลบสินค้า <span className="text-gold-200 font-semibold">"{deleteTarget?.name}"</span> ใช่หรือไม่?
             </DialogDescription>
           </DialogHeader>

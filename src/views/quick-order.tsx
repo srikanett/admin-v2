@@ -187,7 +187,7 @@ export function quickAddOrderView() {
         <GlassPanel className="text-center py-16">
           <CheckCircle size={56} className="mx-auto text-green-400 mb-4" />
           <h2 className="text-lg text-gold-100 font-heading mb-2">บันทึกสำเร็จ!</h2>
-          <p className="text-gold-100/40 text-sm mb-4">
+          <p className="text-gold-100/65 text-sm mb-4">
             Order ID: <span className="text-gold-400 font-mono">{success}</span>
           </p>
           <GoldButton onClick={() => setSuccess(null)} icon={<Plus size={16} />}>
@@ -217,7 +217,7 @@ export function quickAddOrderView() {
           </h2>
 
           <div>
-            <label className="block text-xs text-gold-100/50 mb-1 font-medium">ชื่อ-นามสกุล *</label>
+            <label className="block text-xs text-gold-100/80 mb-1 font-medium">ชื่อ-นามสกุล *</label>
             <Input
               className="themed-input"
               placeholder="ชื่อลูกค้า"
@@ -226,7 +226,7 @@ export function quickAddOrderView() {
             />
           </div>
           <div>
-            <label className="block text-xs text-gold-100/50 mb-1 font-medium">
+            <label className="block text-xs text-gold-100/80 mb-1 font-medium">
               <Phone size={12} className="inline mr-1" />
               เบอร์โทร *
             </label>
@@ -238,7 +238,7 @@ export function quickAddOrderView() {
             />
           </div>
           <div>
-            <label className="block text-xs text-gold-100/50 mb-1 font-medium">ที่อยู่</label>
+            <label className="block text-xs text-gold-100/80 mb-1 font-medium">ที่อยู่</label>
             <Input
               className="themed-input"
               placeholder="ที่อยู่จัดส่ง"
@@ -247,7 +247,7 @@ export function quickAddOrderView() {
             />
           </div>
           <div>
-            <label className="block text-xs text-gold-100/50 mb-1 font-medium">หมายเหตุ</label>
+            <label className="block text-xs text-gold-100/80 mb-1 font-medium">หมายเหตุ</label>
             <Input
               className="themed-input"
               placeholder="หมายเหตุเพิ่มเติม"
@@ -298,7 +298,7 @@ export function quickAddOrderView() {
                   </button>
                 ))}
                 {filteredProducts.length === 0 && (
-                  <p className="text-xs text-gold-100/30 text-center py-4">ไม่พบสินค้า</p>
+                  <p className="text-xs text-gold-100/55 text-center py-4">ไม่พบสินค้า</p>
                 )}
               </div>
             </div>
@@ -314,14 +314,14 @@ export function quickAddOrderView() {
                 >
                   <div className="flex-1 min-w-0">
                     <p className="text-sm text-gold-100/80 truncate">{item.name}</p>
-                    <p className="text-xs text-gold-100/40">
+                    <p className="text-xs text-gold-100/65">
                       ฿{formatThaiCurrency(item.unitPrice)} × {item.quantity}
                     </p>
                   </div>
                   <div className="flex items-center gap-1">
                     <button
                       onClick={() => updateQty(i, -1)}
-                      className="p-1 rounded hover:bg-gold-500/10 text-gold-100/50"
+                      className="p-1 rounded hover:bg-gold-500/10 text-gold-100/80"
                     >
                       <Minus size={14} />
                     </button>
@@ -330,7 +330,7 @@ export function quickAddOrderView() {
                     </span>
                     <button
                       onClick={() => updateQty(i, 1)}
-                      className="p-1 rounded hover:bg-gold-500/10 text-gold-100/50"
+                      className="p-1 rounded hover:bg-gold-500/10 text-gold-100/80"
                     >
                       <Plus size={14} />
                     </button>
@@ -340,7 +340,7 @@ export function quickAddOrderView() {
                   </div>
                   <button
                     onClick={() => removeItem(i)}
-                    className="p-1 rounded hover:bg-red-500/10 text-gold-100/40 hover:text-red-400"
+                    className="p-1 rounded hover:bg-red-500/10 text-gold-100/65 hover:text-red-400"
                   >
                     <Trash2 size={14} />
                   </button>
@@ -350,8 +350,8 @@ export function quickAddOrderView() {
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center py-8 text-center">
               <Package size={36} className="text-gold-100/10 mb-2" />
-              <p className="text-gold-100/20 text-sm">ยังไม่มีสินค้า</p>
-              <p className="text-gold-100/15 text-xs mt-1">คลิก "+ เพิ่มสินค้า" เพื่อเริ่ม</p>
+              <p className="text-gold-100/65 text-sm">ยังไม่มีสินค้า</p>
+              <p className="text-gold-100/35 text-xs mt-1">คลิก "+ เพิ่มสินค้า" เพื่อเริ่ม</p>
             </div>
           )}
 
@@ -359,7 +359,7 @@ export function quickAddOrderView() {
           {items.length > 0 && (
             <div className="border-t border-gold-500/10 pt-3 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gold-100/60">รวม</span>
+                <span className="text-sm text-gold-100/75">รวม</span>
                 <span className="text-lg font-heading text-gold-400">
                   ฿{formatThaiCurrency(totalPrice)}
                 </span>

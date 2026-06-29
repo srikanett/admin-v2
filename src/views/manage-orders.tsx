@@ -280,7 +280,7 @@ export function manageOrderView() {
             <div className="relative flex-1">
               <Search
                 size={18}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gold-100/40"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gold-100/65"
               />
               <input
                 type="text"
@@ -315,7 +315,7 @@ export function manageOrderView() {
               className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium transition-all ${
                 showArchived
                   ? "bg-gold-500/20 text-gold-300 border border-gold-500/40"
-                  : "bg-black/30 text-gold-100/40 border border-gold-500/10 hover:border-gold-500/30 hover:text-gold-100/70"
+                  : "bg-black/30 text-gold-100/65 border border-gold-500/10 hover:border-gold-500/30 hover:text-gold-100/70"
               }`}
             >
               <Filter size={16} />
@@ -325,7 +325,7 @@ export function manageOrderView() {
 
           {/* Date range */}
           <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
-            <span className="text-sm text-gold-100/50 font-heading whitespace-nowrap">
+            <span className="text-sm text-gold-100/80 font-heading whitespace-nowrap">
               วันที่:
             </span>
             <input
@@ -334,7 +334,7 @@ export function manageOrderView() {
               onChange={(e) => setDateFrom(e.target.value)}
               className="themed-input w-full md:w-auto"
             />
-            <span className="text-gold-100/30 text-sm">ถึง</span>
+            <span className="text-gold-100/55 text-sm">ถึง</span>
             <input
               type="date"
               value={dateTo}
@@ -366,13 +366,13 @@ export function manageOrderView() {
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <AlertTriangle size={32} className="text-danger mb-3" />
             <p className="text-danger font-heading">เกิดข้อผิดพลาดในการโหลดข้อมูล</p>
-            <p className="text-gold-100/40 text-sm mt-1">{error}</p>
+            <p className="text-gold-100/65 text-sm mt-1">{error}</p>
           </div>
         ) : filteredOrders.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
-            <Package size={32} className="text-gold-100/20 mb-3" />
-            <p className="text-gold-100/40 font-heading">ไม่พบออร์เดอร์</p>
-            <p className="text-gold-100/20 text-sm mt-1">
+            <Package size={32} className="text-gold-100/40 mb-3" />
+            <p className="text-gold-100/65 font-heading">ไม่พบออร์เดอร์</p>
+            <p className="text-gold-100/65 text-sm mt-1">
               {orders.length > 0
                 ? "ลองปรับตัวกรองหรือค้นหาด้วยคำอื่น"
                 : "ยังไม่มีออร์เดอร์ในระบบ"}
@@ -407,7 +407,7 @@ export function manageOrderView() {
                           <span className="text-sm text-white/90 font-heading">
                             {order.CustomerName || "-"}
                           </span>
-                          <span className="text-xs text-gold-100/40">
+                          <span className="text-xs text-gold-100/65">
                             {order.CustomerPhone || "-"}
                           </span>
                         </div>
@@ -423,7 +423,7 @@ export function manageOrderView() {
                           {/* View */}
                           <button
                             onClick={() => setViewOrder(order)}
-                            className="rounded-lg p-1.5 text-gold-100/50 hover:bg-gold-500/10 hover:text-gold-300 transition-colors"
+                            className="rounded-lg p-1.5 text-gold-100/80 hover:bg-gold-500/10 hover:text-gold-300 transition-colors"
                             title="ดูรายละเอียด"
                           >
                             <Eye size={16} />
@@ -434,7 +434,7 @@ export function manageOrderView() {
                             onClick={() =>
                               navigate(`/create-order?edit=${order.OrderID}`)
                             }
-                            className="rounded-lg p-1.5 text-gold-100/50 hover:bg-gold-500/10 hover:text-gold-300 transition-colors"
+                            className="rounded-lg p-1.5 text-gold-100/80 hover:bg-gold-500/10 hover:text-gold-300 transition-colors"
                             title="แก้ไขออร์เดอร์"
                           >
                             <Edit3 size={16} />
@@ -483,9 +483,9 @@ export function manageOrderView() {
             {/* Pagination */}
             {totalPages > 1 && (
               <div className="flex items-center justify-between border-t border-gold-500/10 px-4 py-3">
-                <p className="text-sm text-gold-100/40">
+                <p className="text-sm text-gold-100/65">
                   หน้า {currentPage + 1} / {totalPages}{" "}
-                  <span className="text-gold-100/20">
+                  <span className="text-gold-100/65">
                     ({filteredOrders.length} รายการ)
                   </span>
                 </p>
@@ -493,7 +493,7 @@ export function manageOrderView() {
                   <button
                     onClick={() => setCurrentPage((p) => Math.max(0, p - 1))}
                     disabled={currentPage === 0}
-                    className="rounded-lg p-2 text-gold-100/50 hover:bg-gold-500/10 hover:text-gold-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                    className="rounded-lg p-2 text-gold-100/80 hover:bg-gold-500/10 hover:text-gold-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                   >
                     <ChevronLeft size={18} />
                   </button>
@@ -516,7 +516,7 @@ export function manageOrderView() {
                         className={`rounded-lg w-8 h-8 text-sm font-heading transition-colors ${
                           pageNum === currentPage
                             ? "bg-gold-500/20 text-gold-300"
-                            : "text-gold-100/50 hover:bg-gold-500/10 hover:text-gold-300"
+                            : "text-gold-100/80 hover:bg-gold-500/10 hover:text-gold-300"
                         }`}
                       >
                         {pageNum + 1}
@@ -528,7 +528,7 @@ export function manageOrderView() {
                       setCurrentPage((p) => Math.min(totalPages - 1, p + 1))
                     }
                     disabled={currentPage >= totalPages - 1}
-                    className="rounded-lg p-2 text-gold-100/50 hover:bg-gold-500/10 hover:text-gold-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                    className="rounded-lg p-2 text-gold-100/80 hover:bg-gold-500/10 hover:text-gold-300 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                   >
                     <ChevronRight size={18} />
                   </button>
@@ -552,7 +552,7 @@ export function manageOrderView() {
                   <div className="flex items-center gap-2 pt-1">
                     <StatusBadge status={viewOrder.Status} />
                     {viewOrder.isArchived && (
-                      <span className="text-xs text-gold-100/30 ml-2">
+                      <span className="text-xs text-gold-100/55 ml-2">
                         (เก็บถาวร)
                       </span>
                     )}
@@ -653,7 +653,7 @@ export function manageOrderView() {
                               <p className="text-white/80 text-sm">
                                 {item.name}
                               </p>
-                              <p className="text-gold-100/40 text-xs">
+                              <p className="text-gold-100/65 text-xs">
                                 {formatThaiCurrency(item.unitPrice)} ×{" "}
                                 {item.quantity}
                                 {item.discount > 0 &&
@@ -707,7 +707,7 @@ export function manageOrderView() {
               <span className="text-white/80">{cancelOrder?.CustomerName}</span>{" "}
               ใช่หรือไม่?
               <br />
-              <span className="text-gold-100/40 text-xs mt-1 block">
+              <span className="text-gold-100/65 text-xs mt-1 block">
                 การดำเนินการนี้ไม่สามารถย้อนกลับได้
               </span>
             </DialogDescription>
@@ -744,7 +744,7 @@ function InfoRow({
 }) {
   return (
     <div className="flex justify-between items-baseline gap-4">
-      <span className="text-gold-100/50 text-xs whitespace-nowrap">{label}</span>
+      <span className="text-gold-100/80 text-xs whitespace-nowrap">{label}</span>
       <span
         className={`text-right text-sm ${highlight ? "font-heading text-gold-300 font-semibold" : "text-white/80"}`}
       >

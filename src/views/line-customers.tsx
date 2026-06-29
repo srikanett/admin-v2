@@ -204,7 +204,7 @@ export function lineCustomersView() {
           </div>
           <div>
             <h1 className="aurora-heading text-xl md:text-2xl">ลูกค้า LINE</h1>
-            <p className="text-gold-100/30 text-sm mt-0.5">
+            <p className="text-gold-100/55 text-sm mt-0.5">
               จัดการลูกค้าที่เชื่อมต่อผ่าน LINE
             </p>
           </div>
@@ -221,7 +221,7 @@ export function lineCustomersView() {
       <div className="relative">
         <Search
           size={18}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-gold-100/30 pointer-events-none"
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-gold-100/55 pointer-events-none"
         />
         <input
           className="themed-input pl-10"
@@ -232,7 +232,7 @@ export function lineCustomersView() {
         {search && (
           <button
             onClick={() => setSearch("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gold-100/30 hover:text-gold-100/60 transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gold-100/55 hover:text-gold-100/75 transition-colors"
           >
             <X size={16} />
           </button>
@@ -244,12 +244,12 @@ export function lineCustomersView() {
         {loading ? (
           <div className="flex flex-col items-center justify-center py-16 gap-3">
             <div className="h-8 w-8 border-2 border-gold-500/30 border-t-gold-500 rounded-full animate-spin" />
-            <p className="text-gold-100/30 text-sm">กำลังโหลดข้อมูล...</p>
+            <p className="text-gold-100/55 text-sm">กำลังโหลดข้อมูล...</p>
           </div>
         ) : filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <Users size={48} className="text-gold-100/15 mb-3" />
-            <p className="text-gold-100/30 text-sm">
+            <Users size={48} className="text-gold-100/35 mb-3" />
+            <p className="text-gold-100/55 text-sm">
               {search ? "ไม่พบลูกค้าที่ค้นหา" : "ยังไม่มีลูกค้า LINE"}
             </p>
             {search && (
@@ -294,7 +294,7 @@ export function lineCustomersView() {
                     <TableCell className="font-medium text-gold-100/90">
                       {c.displayName}
                     </TableCell>
-                    <TableCell className="text-gold-100/50 text-xs font-mono">
+                    <TableCell className="text-gold-100/80 text-xs font-mono">
                       {c.userId || "-"}
                     </TableCell>
                     <TableCell className="text-center">
@@ -302,14 +302,14 @@ export function lineCustomersView() {
                         className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium ${
                           c.orderCount > 0
                             ? "bg-gold-500/15 text-gold-300"
-                            : "bg-gold-100/5 text-gold-100/30"
+                            : "bg-gold-100/5 text-gold-100/55"
                         }`}
                       >
                         <ShoppingBag size={11} />
                         {c.orderCount}
                       </span>
                     </TableCell>
-                    <TableCell className="text-gold-100/40 text-xs">
+                    <TableCell className="text-gold-100/65 text-xs">
                       {c.lastInteraction ? (
                         <span title={c.lastInteraction}>
                           {relativeTime(c.lastInteraction)}
@@ -324,7 +324,7 @@ export function lineCustomersView() {
                           มีออเดอร์
                         </Badge>
                       ) : (
-                        <Badge className="bg-gold-100/5 text-gold-100/30 border-gold-100/10 text-[10px] px-1.5 py-0">
+                        <Badge className="bg-gold-100/5 text-gold-100/55 border-gold-100/10 text-[10px] px-1.5 py-0">
                           ใหม่
                         </Badge>
                       )}
@@ -369,14 +369,14 @@ export function lineCustomersView() {
                     {selectedCustomer.displayName}
                   </h2>
                   {selectedCustomer.userId && (
-                    <p className="text-gold-100/40 text-xs font-mono mt-1">
+                    <p className="text-gold-100/65 text-xs font-mono mt-1">
                       {selectedCustomer.userId}
                     </p>
                   )}
                 </div>
                 {selectedCustomer.statusMessage && (
                   <div className="w-full text-center">
-                    <p className="text-gold-100/50 text-sm italic bg-gold-500/5 rounded-xl px-4 py-2 border border-gold-500/10">
+                    <p className="text-gold-100/80 text-sm italic bg-gold-500/5 rounded-xl px-4 py-2 border border-gold-500/10">
                       <MessageSquareText size={14} className="inline mr-1.5 text-gold-400" />
                       {selectedCustomer.statusMessage}
                     </p>
@@ -393,14 +393,14 @@ export function lineCustomersView() {
                   <p className="text-2xl font-bold text-gold-100 font-heading">
                     {selectedCustomer.orderCount}
                   </p>
-                  <p className="text-gold-100/40 text-xs mt-0.5">ออเดอร์ทั้งหมด</p>
+                  <p className="text-gold-100/65 text-xs mt-0.5">ออเดอร์ทั้งหมด</p>
                 </div>
                 <div className="glass-panel p-4 text-center">
                   <Clock size={20} className="mx-auto text-gold-400 mb-1.5" />
                   <p className="text-sm font-medium text-gold-100 font-heading">
                     {selectedCustomer.lastInteraction ? relativeTime(selectedCustomer.lastInteraction) : "ไม่ทราบ"}
                   </p>
-                  <p className="text-gold-100/40 text-xs mt-0.5">โต้ตอบล่าสุด</p>
+                  <p className="text-gold-100/65 text-xs mt-0.5">โต้ตอบล่าสุด</p>
                 </div>
               </div>
 
@@ -408,33 +408,33 @@ export function lineCustomersView() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-sm">
                   <User size={16} className="text-gold-400 flex-shrink-0" />
-                  <span className="text-gold-100/40 w-28 flex-shrink-0">ชื่อที่แสดง</span>
+                  <span className="text-gold-100/65 w-28 flex-shrink-0">ชื่อที่แสดง</span>
                   <span className="text-gold-100/80">{selectedCustomer.displayName}</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <Hash size={16} className="text-gold-400 flex-shrink-0" />
-                  <span className="text-gold-100/40 w-28 flex-shrink-0">LINE User ID</span>
+                  <span className="text-gold-100/65 w-28 flex-shrink-0">LINE User ID</span>
                   <span className="text-gold-100/80 font-mono text-xs">
                     {selectedCustomer.userId || "-"}
                   </span>
                 </div>
                 <div className="flex items-start gap-3 text-sm">
                   <MessageSquareText size={16} className="text-gold-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-gold-100/40 w-28 flex-shrink-0">ข้อความสถานะ</span>
+                  <span className="text-gold-100/65 w-28 flex-shrink-0">ข้อความสถานะ</span>
                   <span className="text-gold-100/80">
                     {selectedCustomer.statusMessage || "-"}
                   </span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <Clock size={16} className="text-gold-400 flex-shrink-0" />
-                  <span className="text-gold-100/40 w-28 flex-shrink-0">โต้ตอบล่าสุด</span>
+                  <span className="text-gold-100/65 w-28 flex-shrink-0">โต้ตอบล่าสุด</span>
                   <span className="text-gold-100/80">
                     {selectedCustomer.lastInteraction || "ไม่ทราบ"}
                   </span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <ShoppingBag size={16} className="text-gold-400 flex-shrink-0" />
-                  <span className="text-gold-100/40 w-28 flex-shrink-0">จำนวนออเดอร์</span>
+                  <span className="text-gold-100/65 w-28 flex-shrink-0">จำนวนออเดอร์</span>
                   <span className="text-gold-100/80">{selectedCustomer.orderCount} ออเดอร์</span>
                 </div>
               </div>
@@ -444,7 +444,7 @@ export function lineCustomersView() {
                 <>
                   <div className="border-t border-gold-500/10" />
                   <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-sm text-gold-100/40">
+                    <div className="flex items-center gap-2 text-sm text-gold-100/65">
                       <Tag size={14} />
                       แท็ก
                     </div>

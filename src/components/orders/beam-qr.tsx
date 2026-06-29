@@ -58,7 +58,7 @@ export function BeamQrModal({ orderId, totalPrice, onClose }: BeamQrProps) {
           </h3>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-gold-100/50 hover:text-white hover:bg-white/10 transition-colors"
+            className="rounded-lg p-1.5 text-gold-100/80 hover:text-white hover:bg-white/10 transition-colors"
           >
             ✕
           </button>
@@ -67,7 +67,7 @@ export function BeamQrModal({ orderId, totalPrice, onClose }: BeamQrProps) {
         {loading && (
           <div className="flex flex-col items-center gap-3 py-8">
             <Loader2 size={40} className="animate-spin text-gold-500" />
-            <p className="text-sm text-gold-100/60">กำลังสร้าง QR...</p>
+            <p className="text-sm text-gold-100/75">กำลังสร้าง QR...</p>
           </div>
         )}
 
@@ -91,15 +91,15 @@ export function BeamQrModal({ orderId, totalPrice, onClose }: BeamQrProps) {
             ) : (
               <div className="flex justify-center">
                 <div className="rounded-xl border border-gold-500/20 bg-black/40 p-8 text-center">
-                  <QrCode size={80} className="text-gold-500/40 mx-auto mb-2" />
-                  <p className="text-xs text-gold-100/40">QR ไม่พร้อมใช้งาน</p>
+                  <QrCode size={80} className="text-gold-500/65 mx-auto mb-2" />
+                  <p className="text-xs text-gold-100/65">QR ไม่พร้อมใช้งาน</p>
                 </div>
               </div>
             )}
 
             {/* Order Info */}
             <div className="text-center space-y-1">
-              <p className="text-xs text-gold-100/40">Order ID</p>
+              <p className="text-xs text-gold-100/65">Order ID</p>
               <p className="text-gold-500 font-mono font-bold">{orderId}</p>
               <p className="text-2xl font-heading font-bold text-white">
                 ฿{totalPrice.toLocaleString("th-TH", { minimumFractionDigits: 2 })}

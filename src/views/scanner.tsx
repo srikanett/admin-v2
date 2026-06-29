@@ -102,15 +102,15 @@ export function scannerView() {
                 alt="สลิป"
                 className="max-h-[300px] rounded-xl border border-gold-500/20 shadow-lg"
               />
-              <p className="text-sm text-gold-100/50">คลิกเพื่อเปลี่ยนรูป</p>
+              <p className="text-sm text-gold-100/80">คลิกเพื่อเปลี่ยนรูป</p>
             </div>
           ) : (
             <>
-              <Upload size={48} className="text-gold-500/40 mb-4" />
-              <p className="text-lg font-heading text-gold-100/60 mb-1">
+              <Upload size={48} className="text-gold-500/65 mb-4" />
+              <p className="text-lg font-heading text-gold-100/75 mb-1">
                 ลากรูปสลิปมาวางที่นี่
               </p>
-              <p className="text-sm text-gold-100/30">
+              <p className="text-sm text-gold-100/55">
                 หรือคลิกเพื่อเลือกไฟล์ (สูงสุด 1.2 MB)
               </p>
             </>
@@ -133,10 +133,10 @@ export function scannerView() {
         <GlassPanel className="!border-gold-500/20">
           <div className="flex flex-col items-center gap-3 py-8">
             <Loader2 size={40} className="animate-spin text-gold-500" />
-            <p className="text-gold-100/60 font-heading">
+            <p className="text-gold-100/75 font-heading">
               กำลังสแกนด้วย AI...
             </p>
-            <p className="text-xs text-gold-100/30">Gemini กำลังอ่านข้อมูลจากสลิป</p>
+            <p className="text-xs text-gold-100/55">Gemini กำลังอ่านข้อมูลจากสลิป</p>
           </div>
         </GlassPanel>
       )}
@@ -192,10 +192,10 @@ export function scannerView() {
 
           {result.rawText && (
             <details className="mt-4">
-              <summary className="text-xs text-gold-100/30 cursor-pointer hover:text-gold-100/50">
+              <summary className="text-xs text-gold-100/55 cursor-pointer hover:text-gold-100/80">
                 ดูข้อความดิบ
               </summary>
-              <pre className="mt-2 rounded-lg bg-black/30 p-3 text-xs text-gold-100/50 overflow-auto max-h-32">
+              <pre className="mt-2 rounded-lg bg-black/30 p-3 text-xs text-gold-100/80 overflow-auto max-h-32">
                 {result.rawText}
               </pre>
             </details>
@@ -221,7 +221,7 @@ function InfoCard({
     <div className="flex items-center gap-3 rounded-xl bg-black/30 p-3 border border-gold-500/10">
       <span className="text-gold-500/60">{icon}</span>
       <div>
-        <p className="text-[10px] text-gold-100/40 uppercase tracking-wider">{label}</p>
+        <p className="text-[10px] text-gold-100/65 uppercase tracking-wider">{label}</p>
         <p
           className={`text-sm font-heading ${highlight ? "text-gold-500 font-bold text-lg" : "text-white/90"}`}
         >

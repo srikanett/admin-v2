@@ -207,7 +207,7 @@ export function manageCustomerAddressView() {
       <div className="relative">
         <Search
           size={18}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-gold-100/30 pointer-events-none"
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-gold-100/55 pointer-events-none"
         />
         <input
           className="themed-input pl-10"
@@ -225,8 +225,8 @@ export function manageCustomerAddressView() {
           </div>
         ) : filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <Users size={48} className="text-gold-100/15 mb-3" />
-            <p className="text-gold-100/30 text-sm">
+            <Users size={48} className="text-gold-100/35 mb-3" />
+            <p className="text-gold-100/55 text-sm">
               {search ? "ไม่พบลูกค้าที่ค้นหา" : "ยังไม่มีข้อมูลลูกค้า"}
             </p>
           </div>
@@ -247,24 +247,24 @@ export function manageCustomerAddressView() {
                 {filtered.map((c) => (
                   <TableRow key={c.id}>
                     <TableCell className="font-medium text-gold-100/90">{c.name}</TableCell>
-                    <TableCell className="text-gold-100/60">{c.phone}</TableCell>
-                    <TableCell className="text-gold-100/50 max-w-[200px] truncate">
+                    <TableCell className="text-gold-100/75">{c.phone}</TableCell>
+                    <TableCell className="text-gold-100/80 max-w-[200px] truncate">
                       {c.address || "-"}
                     </TableCell>
-                    <TableCell className="text-gold-100/50">{c.birthday || "-"}</TableCell>
-                    <TableCell className="text-gold-100/40 text-xs">{c.lineUserId || "-"}</TableCell>
+                    <TableCell className="text-gold-100/80">{c.birthday || "-"}</TableCell>
+                    <TableCell className="text-gold-100/65 text-xs">{c.lineUserId || "-"}</TableCell>
                     <TableCell className="text-right">
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => openEdit(c)}
-                          className="p-2 rounded-lg hover:bg-gold-500/10 text-gold-100/40 hover:text-gold-400 transition-colors"
+                          className="p-2 rounded-lg hover:bg-gold-500/10 text-gold-100/65 hover:text-gold-400 transition-colors"
                           title="แก้ไข"
                         >
                           <Edit3 size={16} />
                         </button>
                         <button
                           onClick={() => setDeleteTarget(c)}
-                          className="p-2 rounded-lg hover:bg-red-500/10 text-gold-100/40 hover:text-red-400 transition-colors"
+                          className="p-2 rounded-lg hover:bg-red-500/10 text-gold-100/65 hover:text-red-400 transition-colors"
                           title="ลบ"
                         >
                           <Trash2 size={16} />
@@ -286,14 +286,14 @@ export function manageCustomerAddressView() {
             <DialogTitle className="text-gold-100 aurora-heading text-lg">
               {editing.id ? "แก้ไขข้อมูลลูกค้า" : "เพิ่มลูกค้าใหม่"}
             </DialogTitle>
-            <DialogDescription className="text-gold-100/40 text-sm">
+            <DialogDescription className="text-gold-100/65 text-sm">
               กรอกข้อมูลลูกค้าให้ครบถ้วน
             </DialogDescription>
           </DialogHeader>
 
           {/* ── Gemini AI Parse ── */}
           <div className="space-y-2">
-            <label className="text-xs text-gold-100/40 font-medium">
+            <label className="text-xs text-gold-100/65 font-medium">
               <Sparkles size={12} className="inline mr-1" />
               วางข้อความจากแชท (Gemini AI จะช่วยกรอกฟอร์ม)
             </label>
@@ -322,7 +322,7 @@ export function manageCustomerAddressView() {
           {/* ── Form Fields ── */}
           <div className="space-y-4">
             <div>
-              <label className="block text-xs text-gold-100/50 mb-1 font-medium">ชื่อ-นามสกุล *</label>
+              <label className="block text-xs text-gold-100/80 mb-1 font-medium">ชื่อ-นามสกุล *</label>
               <Input
                 className="themed-input"
                 placeholder="ชื่อลูกค้า"
@@ -332,7 +332,7 @@ export function manageCustomerAddressView() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">
                   <Phone size={12} className="inline mr-1" />
                   เบอร์โทร *
                 </label>
@@ -344,7 +344,7 @@ export function manageCustomerAddressView() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">
                   <CakeSlice size={12} className="inline mr-1" />
                   วันเกิด
                 </label>
@@ -357,7 +357,7 @@ export function manageCustomerAddressView() {
               </div>
             </div>
             <div>
-              <label className="block text-xs text-gold-100/50 mb-1 font-medium">
+              <label className="block text-xs text-gold-100/80 mb-1 font-medium">
                 <MapPin size={12} className="inline mr-1" />
                 ที่อยู่
               </label>
@@ -370,7 +370,7 @@ export function manageCustomerAddressView() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">LINE User ID</label>
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">LINE User ID</label>
                 <Input
                   className="themed-input"
                   placeholder="Uxxxxx..."
@@ -379,7 +379,7 @@ export function manageCustomerAddressView() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">หมายเหตุ</label>
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">หมายเหตุ</label>
                 <Input
                   className="themed-input"
                   placeholder="บันทึกเพิ่มเติม"
@@ -413,7 +413,7 @@ export function manageCustomerAddressView() {
               <AlertTriangle size={20} className="text-red-400" />
               ยืนยันการลบ
             </DialogTitle>
-            <DialogDescription className="text-gold-100/50">
+            <DialogDescription className="text-gold-100/80">
               คุณต้องการลบลูกค้า <span className="text-gold-200 font-semibold">"{deleteTarget?.name}"</span> ใช่หรือไม่?
               <br />
               การดำเนินการนี้ไม่สามารถย้อนกลับได้

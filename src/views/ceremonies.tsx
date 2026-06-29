@@ -167,8 +167,8 @@ export function manageCeremonyView() {
           </div>
         ) : ceremonies.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <ScrollText size={48} className="text-gold-100/15 mb-3" />
-            <p className="text-gold-100/30 text-sm">ยังไม่มีพิธี</p>
+            <ScrollText size={48} className="text-gold-100/35 mb-3" />
+            <p className="text-gold-100/55 text-sm">ยังไม่มีพิธี</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -190,7 +190,7 @@ export function manageCeremonyView() {
                       <div>
                         <span>{c.name}</span>
                         {c.description && (
-                          <p className="text-xs text-gold-100/30 mt-0.5 line-clamp-1">
+                          <p className="text-xs text-gold-100/55 mt-0.5 line-clamp-1">
                             {c.description}
                           </p>
                         )}
@@ -199,10 +199,10 @@ export function manageCeremonyView() {
                     <TableCell className="text-gold-400 font-heading">
                       ฿{formatThaiCurrency(c.basePrice)}
                     </TableCell>
-                    <TableCell className="text-gold-100/50">
+                    <TableCell className="text-gold-100/80">
                       {c.souvenirCost != null ? `฿${formatThaiCurrency(c.souvenirCost)}` : "-"}
                     </TableCell>
-                    <TableCell className="text-gold-100/50">
+                    <TableCell className="text-gold-100/80">
                       {c.maxParticipants != null ? (
                         <span className="flex items-center gap-1">
                           <Users size={12} /> {c.maxParticipants}
@@ -211,21 +211,21 @@ export function manageCeremonyView() {
                         "-"
                       )}
                     </TableCell>
-                    <TableCell className="text-gold-100/40 text-xs">
+                    <TableCell className="text-gold-100/65 text-xs">
                       {c.date || "-"}
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => openEdit(c)}
-                          className="p-2 rounded-lg hover:bg-gold-500/10 text-gold-100/40 hover:text-gold-400 transition-colors"
+                          className="p-2 rounded-lg hover:bg-gold-500/10 text-gold-100/65 hover:text-gold-400 transition-colors"
                           title="แก้ไข"
                         >
                           <Edit3 size={16} />
                         </button>
                         <button
                           onClick={() => setDeleteTarget(c)}
-                          className="p-2 rounded-lg hover:bg-red-500/10 text-gold-100/40 hover:text-red-400 transition-colors"
+                          className="p-2 rounded-lg hover:bg-red-500/10 text-gold-100/65 hover:text-red-400 transition-colors"
                           title="ลบ"
                         >
                           <Trash2 size={16} />
@@ -238,7 +238,7 @@ export function manageCeremonyView() {
             </Table>
           </div>
         )}
-        <div className="px-4 py-3 border-t border-gold-500/10 text-xs text-gold-100/30">
+        <div className="px-4 py-3 border-t border-gold-500/10 text-xs text-gold-100/55">
           ทั้งหมด {ceremonies.length} รายการ
         </div>
       </GlassPanel>
@@ -250,14 +250,14 @@ export function manageCeremonyView() {
             <DialogTitle className="text-gold-100 aurora-heading text-lg">
               {editing.id ? "แก้ไขพิธี" : "เพิ่มพิธีใหม่"}
             </DialogTitle>
-            <DialogDescription className="text-gold-100/40 text-sm">
+            <DialogDescription className="text-gold-100/65 text-sm">
               กำหนดชื่อ ราคาฐาน และรายละเอียดพิธี
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-xs text-gold-100/50 mb-1 font-medium">ชื่อพิธี *</label>
+              <label className="block text-xs text-gold-100/80 mb-1 font-medium">ชื่อพิธี *</label>
               <Input
                 className="themed-input"
                 placeholder="ชื่อพิธี เช่น บูชาพระพิฆเนศ"
@@ -267,7 +267,7 @@ export function manageCeremonyView() {
             </div>
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">
                   <Coins size={12} className="inline mr-1" />
                   ราคาฐาน *
                 </label>
@@ -284,7 +284,7 @@ export function manageCeremonyView() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">
                   <Gift size={12} className="inline mr-1" />
                   ค่าของชำร่วย
                 </label>
@@ -305,7 +305,7 @@ export function manageCeremonyView() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">
                   <Users size={12} className="inline mr-1" />
                   ผู้ร่วมพิธีสูงสุด
                 </label>
@@ -326,7 +326,7 @@ export function manageCeremonyView() {
               </div>
             </div>
             <div>
-              <label className="block text-xs text-gold-100/50 mb-1 font-medium">วันที่จัดพิธี</label>
+              <label className="block text-xs text-gold-100/80 mb-1 font-medium">วันที่จัดพิธี</label>
               <Input
                 className="themed-input"
                 type="date"
@@ -335,7 +335,7 @@ export function manageCeremonyView() {
               />
             </div>
             <div>
-              <label className="block text-xs text-gold-100/50 mb-1 font-medium">คำอธิบาย</label>
+              <label className="block text-xs text-gold-100/80 mb-1 font-medium">คำอธิบาย</label>
               <textarea
                 className="themed-input min-h-[80px] resize-none"
                 placeholder="รายละเอียดเพิ่มเติม..."
@@ -369,7 +369,7 @@ export function manageCeremonyView() {
               <AlertTriangle size={20} className="text-red-400" />
               ยืนยันการลบพิธี
             </DialogTitle>
-            <DialogDescription className="text-gold-100/50">
+            <DialogDescription className="text-gold-100/80">
               คุณต้องการลบพิธี <span className="text-gold-200 font-semibold">"{deleteTarget?.name}"</span> ใช่หรือไม่?
             </DialogDescription>
           </DialogHeader>

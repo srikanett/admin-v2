@@ -159,7 +159,7 @@ export function lineBotView() {
         </h3>
         <div className="space-y-4">
           <div>
-            <label className="block text-xs text-gold-100/50 mb-1.5">
+            <label className="block text-xs text-gold-100/80 mb-1.5">
               ข้อความต้อนรับ
             </label>
             <textarea
@@ -171,7 +171,7 @@ export function lineBotView() {
             />
           </div>
           <div>
-            <label className="block text-xs text-gold-100/50 mb-1.5">
+            <label className="block text-xs text-gold-100/80 mb-1.5">
               ข้อความเมื่อไม่เข้าใจ
             </label>
             <textarea
@@ -193,18 +193,18 @@ export function lineBotView() {
         </h3>
         <div className="grid gap-3 md:grid-cols-2">
           <div className="rounded-xl bg-black/30 p-4 border border-gold-500/10">
-            <p className="text-xs text-gold-100/40 uppercase tracking-wider mb-1">
+            <p className="text-xs text-gold-100/65 uppercase tracking-wider mb-1">
               Bot 1
             </p>
             <p className="font-heading text-gold-500">Sriganett99</p>
-            <p className="text-xs text-gold-100/30 mt-1">LIFF: 2008655508-r8W209qQ</p>
+            <p className="text-xs text-gold-100/55 mt-1">LIFF: 2008655508-r8W209qQ</p>
           </div>
           <div className="rounded-xl bg-black/30 p-4 border border-gold-500/10">
-            <p className="text-xs text-gold-100/40 uppercase tracking-wider mb-1">
+            <p className="text-xs text-gold-100/65 uppercase tracking-wider mb-1">
               Bot 2
             </p>
             <p className="font-heading text-gold-500">ศรีคเนศ เทวาลัย</p>
-            <p className="text-xs text-gold-100/30 mt-1">LIFF: 2009352737-Kp9DAzYW</p>
+            <p className="text-xs text-gold-100/55 mt-1">LIFF: 2009352737-Kp9DAzYW</p>
           </div>
         </div>
       </GlassPanel>
@@ -241,7 +241,7 @@ function ToggleRow({
     <div className="flex items-start justify-between gap-4 py-2">
       <div className="flex-1">
         <p className="text-sm text-white/90 font-heading">{label}</p>
-        <p className="text-xs text-gold-100/40 mt-0.5">
+        <p className="text-xs text-gold-100/65 mt-0.5">
           {warning && <AlertTriangle size={12} className="inline mr-1 text-[#EAB308]" />}
           {desc}
         </p>
@@ -249,7 +249,7 @@ function ToggleRow({
       <button
         onClick={() => onChange(!enabled)}
         className={`flex-shrink-0 mt-0.5 transition-colors ${
-          enabled ? "text-emerald-400 hover:text-emerald-300" : "text-gold-100/30 hover:text-gold-100/50"
+          enabled ? "text-emerald-400 hover:text-emerald-300" : "text-gold-100/55 hover:text-gold-100/80"
         }`}
       >
         {enabled ? <ToggleRight size={32} /> : <ToggleLeft size={32} />}

@@ -13,7 +13,7 @@ export function BankPicker({ selectedBank, onSelect }: BankPickerProps) {
 
   if (loading) {
     return (
-      <div className="text-sm text-gold-100/40 animate-pulse">
+      <div className="text-sm text-gold-100/65 animate-pulse">
         กำลังโหลดข้อมูลธนาคาร...
       </div>
     )
@@ -39,17 +39,17 @@ export function BankPicker({ selectedBank, onSelect }: BankPickerProps) {
               <Building2
                 size={20}
                 className={`mt-0.5 flex-shrink-0 ${
-                  isSelected ? "text-gold-500" : "text-gold-100/30"
+                  isSelected ? "text-gold-500" : "text-gold-100/55"
                 }`}
               />
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-medium text-white truncate">
                   {bank.bankName}
                 </p>
-                <p className="text-xs text-gold-100/50 truncate">
+                <p className="text-xs text-gold-100/80 truncate">
                   {bank.accountNumber}
                 </p>
-                <p className="text-[11px] text-gold-100/30 truncate">
+                <p className="text-[11px] text-gold-100/55 truncate">
                   {bank.accountHolder}
                 </p>
               </div>
@@ -65,14 +65,14 @@ export function BankPicker({ selectedBank, onSelect }: BankPickerProps) {
 
       {selectedBank && (
         <div className="flex items-center gap-2">
-          <p className="text-xs text-gold-100/50">
+          <p className="text-xs text-gold-100/80">
             เลือก: {selectedBank.bankName} {selectedBank.accountNumber}
           </p>
           <button
             onClick={() => {
               navigator.clipboard.writeText(selectedBank.accountNumber)
             }}
-            className="text-gold-100/30 hover:text-gold-500 transition-colors"
+            className="text-gold-100/55 hover:text-gold-500 transition-colors"
             title="คัดลอกเลขบัญชี"
           >
             <Copy size={14} />

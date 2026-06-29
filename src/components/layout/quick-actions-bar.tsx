@@ -72,7 +72,7 @@ export function QuickActionsBar({ showOnAllPages }: QuickActionsBarProps) {
               className="flex items-center gap-2 rounded-xl bg-black/30 px-3 py-1.5 border border-gold-500/10"
             >
               <span className={stat.color}>{stat.icon}</span>
-              <span className="text-[10px] text-gold-100/50 font-heading uppercase tracking-wider">
+              <span className="text-[10px] text-gold-100/80 font-heading uppercase tracking-wider">
                 {stat.label}
               </span>
               <span className={`text-sm font-heading font-bold ${stat.color}`}>

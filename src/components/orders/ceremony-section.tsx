@@ -57,7 +57,7 @@ export function CeremonySection({
         <div className="space-y-4 animate-in fade-in slide-in-from-top-2">
           {/* Ceremony picker */}
           <div>
-            <label className="mb-1 block text-xs text-gold-100/50">
+            <label className="mb-1 block text-xs text-gold-100/80">
               เลือกพิธี
             </label>
             <select
@@ -79,7 +79,7 @@ export function CeremonySection({
 
           {/* Participant count */}
           <div>
-            <label className="mb-1 block text-xs text-gold-100/50">
+            <label className="mb-1 block text-xs text-gold-100/80">
               จำนวนผู้ร่วมพิธี
             </label>
             <div className="flex gap-2">
@@ -90,7 +90,7 @@ export function CeremonySection({
                   className={`flex-1 rounded-xl border py-2 text-sm font-heading transition-all ${
                     participantSlots === n
                       ? "border-gold-500 bg-gold-500/10 text-gold-500"
-                      : "border-gold-500/10 bg-black/20 text-gold-100/50"
+                      : "border-gold-500/10 bg-black/20 text-gold-100/80"
                   }`}
                 >
                   {n} คน
@@ -102,7 +102,7 @@ export function CeremonySection({
           {/* Participant 1 */}
           <div className="grid gap-3 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-xs text-gold-100/50">
+              <label className="mb-1 block text-xs text-gold-100/80">
                 ชื่อ-นามสกุล
               </label>
               <input
@@ -113,7 +113,7 @@ export function CeremonySection({
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs text-gold-100/50">
+              <label className="mb-1 block text-xs text-gold-100/80">
                 วันเกิด (ว/ด/ป)
               </label>
               <input
@@ -129,7 +129,7 @@ export function CeremonySection({
           {participantSlots >= 2 && (
             <div className="grid gap-3 sm:grid-cols-2">
               <div>
-                <label className="mb-1 block text-xs text-gold-100/50">
+                <label className="mb-1 block text-xs text-gold-100/80">
                   ชื่อ-นามสกุล (คนที่ 2)
                 </label>
                 <input
@@ -140,7 +140,7 @@ export function CeremonySection({
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs text-gold-100/50">
+                <label className="mb-1 block text-xs text-gold-100/80">
                   วันเกิด (ว/ด/ป)
                 </label>
                 <input
@@ -155,7 +155,7 @@ export function CeremonySection({
 
           {/* Ceremony Note */}
           <div>
-            <label className="mb-1 block text-xs text-gold-100/50">
+            <label className="mb-1 block text-xs text-gold-100/80">
               หมายเหตุ
             </label>
             <textarea

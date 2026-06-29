@@ -278,7 +278,7 @@ export function manageParticipantBirthdayView() {
         <div className="relative">
           <Search
             size={18}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gold-100/30 pointer-events-none"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gold-100/55 pointer-events-none"
           />
           <input
             className="themed-input pl-10"
@@ -302,7 +302,7 @@ export function manageParticipantBirthdayView() {
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                 filter === key
                   ? "bg-gold-500 text-black font-semibold shadow-gold"
-                  : "glass-panel border-gold-500/10 text-gold-100/50 hover:text-gold-200 hover:border-gold-500/30"
+                  : "glass-panel border-gold-500/10 text-gold-100/80 hover:text-gold-200 hover:border-gold-500/30"
               }`}
             >
               {label}
@@ -319,8 +319,8 @@ export function manageParticipantBirthdayView() {
           </div>
         ) : filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <Cake size={48} className="text-gold-100/15 mb-3" />
-            <p className="text-gold-100/30 text-sm">
+            <Cake size={48} className="text-gold-100/35 mb-3" />
+            <p className="text-gold-100/55 text-sm">
               {filter !== "all" ? "ไม่มีวันเกิดในช่วงนี้" : "ยังไม่มีข้อมูลผู้ร่วมพิธี"}
             </p>
           </div>
@@ -351,10 +351,10 @@ export function manageParticipantBirthdayView() {
                           <span className="text-gold-100/90">{p.name}</span>
                         </div>
                       </TableCell>
-                      <TableCell className="text-gold-100/60 font-mono text-xs">
+                      <TableCell className="text-gold-100/75 font-mono text-xs">
                         {p.birthday}
                       </TableCell>
-                      <TableCell className="text-gold-100/50">
+                      <TableCell className="text-gold-100/80">
                         {age != null ? `${age} ปี` : "-"}
                       </TableCell>
                       <TableCell>
@@ -369,33 +369,33 @@ export function manageParticipantBirthdayView() {
                                 ? "bg-pink-500/10 text-pink-300 border border-pink-500/20"
                                 : days <= 7
                                   ? "bg-amber-500/10 text-amber-300 border border-amber-500/20"
-                                  : "bg-gold-500/5 text-gold-100/40 border border-gold-500/10"
+                                  : "bg-gold-500/5 text-gold-100/65 border border-gold-500/10"
                             }`}
                           >
                             {days} วัน
                           </span>
                         ) : (
-                          <span className="text-gold-100/30 text-xs">-</span>
+                          <span className="text-gold-100/55 text-xs">-</span>
                         )}
                       </TableCell>
-                      <TableCell className="text-gold-100/50 text-xs">
+                      <TableCell className="text-gold-100/80 text-xs">
                         {p.phone || "-"}
                       </TableCell>
-                      <TableCell className="text-gold-100/40 text-xs max-w-[150px] truncate">
+                      <TableCell className="text-gold-100/65 text-xs max-w-[150px] truncate">
                         {p.ceremonyName || "-"}
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1">
                           <button
                             onClick={() => openEdit(p)}
-                            className="p-2 rounded-lg hover:bg-gold-500/10 text-gold-100/40 hover:text-gold-400 transition-colors"
+                            className="p-2 rounded-lg hover:bg-gold-500/10 text-gold-100/65 hover:text-gold-400 transition-colors"
                             title="แก้ไข"
                           >
                             <Edit3 size={16} />
                           </button>
                           <button
                             onClick={() => setDeleteTarget(p)}
-                            className="p-2 rounded-lg hover:bg-red-500/10 text-gold-100/40 hover:text-red-400 transition-colors"
+                            className="p-2 rounded-lg hover:bg-red-500/10 text-gold-100/65 hover:text-red-400 transition-colors"
                             title="ลบ"
                           >
                             <Trash2 size={16} />
@@ -409,7 +409,7 @@ export function manageParticipantBirthdayView() {
             </Table>
           </div>
         )}
-        <div className="px-4 py-3 border-t border-gold-500/10 text-xs text-gold-100/30">
+        <div className="px-4 py-3 border-t border-gold-500/10 text-xs text-gold-100/55">
           แสดง {filtered.length} จาก {participants.length} รายการ
         </div>
       </GlassPanel>
@@ -421,14 +421,14 @@ export function manageParticipantBirthdayView() {
             <DialogTitle className="text-gold-100 aurora-heading text-lg">
               {editing.id ? "แก้ไขข้อมูลผู้ร่วมพิธี" : "เพิ่มผู้ร่วมพิธีใหม่"}
             </DialogTitle>
-            <DialogDescription className="text-gold-100/40 text-sm">
+            <DialogDescription className="text-gold-100/65 text-sm">
               กรอกชื่อและวันเกิดของผู้ร่วมพิธี
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-xs text-gold-100/50 mb-1 font-medium">
+              <label className="block text-xs text-gold-100/80 mb-1 font-medium">
                 <User size={12} className="inline mr-1" />
                 ชื่อ-นามสกุล *
               </label>
@@ -441,7 +441,7 @@ export function manageParticipantBirthdayView() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">
                   <Calendar size={12} className="inline mr-1" />
                   วันเกิด (DD/MM/YYYY) *
                 </label>
@@ -453,7 +453,7 @@ export function manageParticipantBirthdayView() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-gold-100/50 mb-1 font-medium">เบอร์โทร</label>
+                <label className="block text-xs text-gold-100/80 mb-1 font-medium">เบอร์โทร</label>
                 <Input
                   className="themed-input"
                   placeholder="08xxxxxxxx"
@@ -463,7 +463,7 @@ export function manageParticipantBirthdayView() {
               </div>
             </div>
             <div>
-              <label className="block text-xs text-gold-100/50 mb-1 font-medium">
+              <label className="block text-xs text-gold-100/80 mb-1 font-medium">
                 <Users size={12} className="inline mr-1" />
                 พิธีที่เข้าร่วม
               </label>
@@ -475,7 +475,7 @@ export function manageParticipantBirthdayView() {
               />
             </div>
             <div>
-              <label className="block text-xs text-gold-100/50 mb-1 font-medium">หมายเหตุ</label>
+              <label className="block text-xs text-gold-100/80 mb-1 font-medium">หมายเหตุ</label>
               <textarea
                 className="themed-input min-h-[60px] resize-none"
                 placeholder="บันทึกเพิ่มเติม"
@@ -509,7 +509,7 @@ export function manageParticipantBirthdayView() {
               <AlertTriangle size={20} className="text-red-400" />
               ยืนยันการลบ
             </DialogTitle>
-            <DialogDescription className="text-gold-100/50">
+            <DialogDescription className="text-gold-100/80">
               คุณต้องการลบ <span className="text-gold-200 font-semibold">"{deleteTarget?.name}"</span> ใช่หรือไม่?
             </DialogDescription>
           </DialogHeader>

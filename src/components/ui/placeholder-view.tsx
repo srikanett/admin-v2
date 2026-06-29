@@ -24,16 +24,16 @@ export function PlaceholderView({
       </div>
 
       {description && (
-        <p className="text-gold-100/50 text-sm">{description}</p>
+        <p className="text-gold-100/80 text-sm">{description}</p>
       )}
 
       {children || (
         <GlassPanel>
           <div className="flex flex-col items-center justify-center py-12 text-center">
-            <p className="text-gold-100/40 text-sm">
+            <p className="text-gold-100/65 text-sm">
               หน้านี้อยู่ระหว่างการพัฒนา
             </p>
-            <p className="text-gold-100/20 text-xs mt-1">
+            <p className="text-gold-100/65 text-xs mt-1">
               รอการ implement ใน Phase ถัดไป
             </p>
           </div>

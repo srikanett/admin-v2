@@ -60,7 +60,7 @@ export function ShareModal({ orderId, onClose }: ShareModalProps) {
         <div className="glass-panel-strong w-full max-w-sm text-center py-8 animate-in zoom-in-95">
           <CheckCircle2 size={48} className="text-emerald-400 mx-auto mb-3" />
           <h3 className="text-lg font-heading text-white mb-1">ส่งเรียบร้อย ✅</h3>
-          <p className="text-sm text-gold-100/50">ลูกค้าจะได้รับข้อความทาง LINE</p>
+          <p className="text-sm text-gold-100/80">ลูกค้าจะได้รับข้อความทาง LINE</p>
         </div>
       </div>
     )
@@ -75,7 +75,7 @@ export function ShareModal({ orderId, onClose }: ShareModalProps) {
           </h3>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-gold-100/50 hover:text-white hover:bg-white/10 transition-colors"
+            className="rounded-lg p-1.5 text-gold-100/80 hover:text-white hover:bg-white/10 transition-colors"
           >
             ✕
           </button>
@@ -84,13 +84,13 @@ export function ShareModal({ orderId, onClose }: ShareModalProps) {
         <div className="space-y-4">
           {/* Order ID */}
           <div className="flex items-center justify-between rounded-lg bg-black/30 px-3 py-2 border border-gold-500/10">
-            <span className="text-xs text-gold-100/40">Order ID</span>
+            <span className="text-xs text-gold-100/65">Order ID</span>
             <code className="text-sm text-gold-500 font-mono font-bold">{orderId}</code>
           </div>
 
           {/* Share Link */}
           <div>
-            <label className="text-xs text-gold-100/40 block mb-1.5">ลิงก์แชร์</label>
+            <label className="text-xs text-gold-100/65 block mb-1.5">ลิงก์แชร์</label>
             <div className="flex gap-2">
               <input
                 readOnly
@@ -99,7 +99,7 @@ export function ShareModal({ orderId, onClose }: ShareModalProps) {
               />
               <button
                 onClick={handleCopyLink}
-                className="rounded-lg border border-gold-500/20 bg-black/30 p-2 text-gold-100/50 hover:text-gold-500 hover:border-gold-500/40 transition-colors"
+                className="rounded-lg border border-gold-500/20 bg-black/30 p-2 text-gold-100/80 hover:text-gold-500 hover:border-gold-500/40 transition-colors"
               >
                 {copied ? <CheckCircle2 size={16} className="text-emerald-400" /> : <Copy size={16} />}
               </button>
@@ -108,7 +108,7 @@ export function ShareModal({ orderId, onClose }: ShareModalProps) {
 
           {/* Bot Selector */}
           <div>
-            <label className="text-xs text-gold-100/40 mb-1.5 flex items-center gap-1.5">
+            <label className="text-xs text-gold-100/65 mb-1.5 flex items-center gap-1.5">
               <Bot size={12} /> LINE Bot
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -119,7 +119,7 @@ export function ShareModal({ orderId, onClose }: ShareModalProps) {
                   className={`rounded-lg border p-2 text-xs text-left transition-all ${
                     selectedBot === bot.id
                       ? "border-gold-500 bg-gold-500/10 text-gold-500"
-                      : "border-gold-500/10 bg-black/20 text-gold-100/60 hover:border-gold-500/30"
+                      : "border-gold-500/10 bg-black/20 text-gold-100/75 hover:border-gold-500/30"
                   }`}
                 >
                   {bot.label}
@@ -130,7 +130,7 @@ export function ShareModal({ orderId, onClose }: ShareModalProps) {
 
           {/* Plan Selector */}
           <div>
-            <label className="text-xs text-gold-100/40 mb-1.5 flex items-center gap-1.5">
+            <label className="text-xs text-gold-100/65 mb-1.5 flex items-center gap-1.5">
               <FileText size={12} /> รูปแบบข้อความ
             </label>
             <div className="space-y-2">
@@ -147,7 +147,7 @@ export function ShareModal({ orderId, onClose }: ShareModalProps) {
                   <p className={`text-xs font-heading ${selectedPlan === plan.id ? "text-gold-500" : "text-gold-100/80"}`}>
                     {plan.label}
                   </p>
-                  <p className="text-[10px] text-gold-100/40 mt-0.5">{plan.desc}</p>
+                  <p className="text-[10px] text-gold-100/65 mt-0.5">{plan.desc}</p>
                 </button>
               ))}
             </div>
